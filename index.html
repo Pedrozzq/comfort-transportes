@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comfort Transport's | Transporte Executivo</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+
+    <!-- Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for high-quality icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter for a modern, clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #f8fafc;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Fixed, darkened Ouro Preto background behind the entire site */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.85)), url('img/ouro-preto-bg.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+
+        /* Animated gradient background for the top Linktree section */
+        .hero-gradient {
+            background: linear-gradient(135deg, #000000 0%, #0c0a05 45%, #1a1305 100%);
+            background-size: 200% 200%;
+            animation: gradientMove 15s ease infinite;
+        }
+
+        /* Gold text gradient used across headings for a premium feel */
+        .gold-text {
+            background: linear-gradient(135deg, #fde68a 0%, #d4af37 45%, #b8860b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Same gold gradient, but slowly animated for the brand title */
+        .gold-text-animated {
+            background: linear-gradient(90deg, #fde68a 0%, #d4af37 25%, #b8860b 50%, #d4af37 75%, #fde68a 100%);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: goldShine 6s ease-in-out infinite;
+        }
+
+        @keyframes goldShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Language switcher buttons */
+        .lang-btn {
+            opacity: 0.5;
+        }
+        .lang-btn:hover {
+            opacity: 0.8;
+        }
+        .lang-btn.active {
+            opacity: 1;
+            transform: scale(1.15);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Soft gold glow used around the logo */
+        .gold-glow {
+            box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35), 0 0 35px rgba(212, 175, 55, 0.18);
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism effect for the buttons and cards */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            background: rgba(30, 41, 59, 0.7);
+            transform: translateY(-2px);
+            border-color: rgba(212, 175, 55, 0.35);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Shine effect on hover for the primary CTA */
+        .primary-cta {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .primary-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.45); /* Gold shadow */
+        }
+
+        .primary-cta::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            transition: all 0.7s ease;
+        }
+
+        .primary-cta:hover::after {
+            left: 150%;
+        }
+
+        /* Entry animation for elements */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Staggered animation delays */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+        .delay-7 { animation-delay: 0.7s; }
+        .delay-8 { animation-delay: 0.8s; }
+        
+        /* Modal transitions */
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: scale(0.95) translateY(10px);
+        }
+        .modal.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Hide scrollbar for neatness but keep functionality */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #78350f;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b8860b;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-amber-600 selection:text-white">
+
+    <!-- Language Switcher -->
+    <div class="fixed top-4 right-4 z-50 flex gap-1.5 bg-black/60 border border-amber-500/30 rounded-full p-1.5 backdrop-blur-md">
+        <button onclick="setLanguage('pt')" data-lang-btn="pt" aria-label="Português" class="lang-btn w-7 h-7 rounded-full overflow-hidden transition-transform shrink-0">
+            <svg viewBox="0 0 24 24" class="w-full h-full">
+                <rect width="24" height="24" fill="#009B3A"/>
+                <polygon points="12,3 22,12 12,21 2,12" fill="#FEDF00"/>
+                <circle cx="12" cy="12" r="5" fill="#002776"/>
+            </svg>
+        </button>
+        <button onclick="setLanguage('en')" data-lang-btn="en" aria-label="English" class="lang-btn w-7 h-7 rounded-full overflow-hidden transition-transform shrink-0">
+            <svg viewBox="0 0 24 24" class="w-full h-full">
+                <rect width="24" height="24" fill="#B22234"/>
+                <rect y="2.7" width="24" height="2.7" fill="#fff"/>
+                <rect y="8.2" width="24" height="2.7" fill="#fff"/>
+                <rect y="13.6" width="24" height="2.7" fill="#fff"/>
+                <rect y="19.1" width="24" height="2.7" fill="#fff"/>
+                <rect width="12" height="13" fill="#3C3B6E"/>
+            </svg>
+        </button>
+        <button onclick="setLanguage('es')" data-lang-btn="es" aria-label="Español" class="lang-btn w-7 h-7 rounded-full overflow-hidden transition-transform shrink-0">
+            <svg viewBox="0 0 24 24" class="w-full h-full">
+                <rect width="24" height="24" fill="#AA151B"/>
+                <rect y="6" width="24" height="12" fill="#F1BF00"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- HERO / LINKTREE SECTION (Takes up min 100vh) -->
+    <section class="bg-slate-900/50 min-h-[100dvh] w-full flex flex-col items-center pt-12 pb-24 relative px-4 z-10">
+        
+        <div class="w-full max-w-lg mx-auto flex flex-col items-center">
+            
+            <!-- Profile / Brand -->
+            <header class="w-full flex flex-col items-center mb-8 fade-in-up">
+                <!-- Profile Image / Logo -->
+                <div class="w-full flex justify-center mb-1 group">
+                    <img src="img/logo.webp" alt="Comfort Transport's" class="w-64 sm:w-72 h-auto object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-[0_0_35px_rgba(212,175,55,0.35)]">
+                </div>
+
+                <!-- Brand Name -->
+                <h1 class="text-3xl font-bold gold-text-animated tracking-tight mb-2 text-center">
+                    Comfort Transport's
+                </h1>
+
+                <!-- Subtitle -->
+                <p data-i18n="hero_subtitle" class="text-amber-400/90 text-sm font-semibold tracking-widest uppercase mb-3 text-center">
+                    Transporte Executivo de Excelência
+                </p>
+
+                <!-- Salvar Contato (minimalista) -->
+                <button onclick="downloadVCard()" class="inline-flex items-center gap-1.5 bg-white text-black hover:bg-amber-400 text-xs font-semibold tracking-wide transition-colors mb-4 px-3 py-1.5 rounded-full">
+                    <i class="fa-regular fa-address-book"></i>
+                    <span data-i18n="hero_saveContact">Salvar contato</span>
+                </button>
+
+                <!-- Status Badge -->
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-950/60 text-emerald-400 border border-emerald-800/50 backdrop-blur-sm">
+                    <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
+                    <span data-i18n="hero_available">Disponível 24/7</span>
+                </span>
+            </header>
+
+            <!-- Links Section -->
+            <div class="w-full flex flex-col gap-3">
+                
+                <!-- 1. Principal CTA: Solicitar Corrida -->
+                <a href="javascript:void(0)" onclick="waSend('wa_ride')" class="link-btn primary-cta fade-in-up delay-1 w-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 text-black rounded-2xl p-4 flex items-center border border-amber-300/50">
+                    <div class="w-12 h-12 rounded-full bg-black/15 flex items-center justify-center mr-4 shrink-0 shadow-inner">
+                        <i class="fa-solid fa-car text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span data-i18n="cta_title" class="font-bold text-lg leading-tight">Solicitar Corrida</span>
+                        <span data-i18n="cta_subtitle" class="text-black/70 text-xs font-medium opacity-90">Atendimento imediato</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right ml-auto text-black/60"></i>
+                </a>
+
+                <!-- 2. Agendar transporte -->
+                <a href="javascript:void(0)" onclick="openModal('agendamentoModal')" class="glass-panel fade-in-up delay-2 w-full rounded-2xl p-4 flex items-center cursor-pointer">
+                    <div class="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center mr-4 shrink-0 text-slate-300">
+                        <i class="fa-regular fa-calendar-check text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span data-i18n="schedule_title" class="font-semibold text-gray-100">Agendar Transporte</span>
+                        <span data-i18n="schedule_subtitle" class="text-slate-400 text-xs">Viagens programadas e eventos</span>
+                    </div>
+                </a>
+
+                <!-- 4. Transfer Aeroporto -->
+                <a href="javascript:void(0)" onclick="openModal('transferModal')" class="glass-panel fade-in-up delay-4 w-full rounded-2xl p-4 flex items-center cursor-pointer">
+                    <div class="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center mr-4 shrink-0 text-amber-400">
+                        <i class="fa-solid fa-plane-departure text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span data-i18n="transferLink_title" class="font-semibold text-gray-100">Transfer Aeroporto</span>
+                        <span data-i18n="transferLink_subtitle" class="text-slate-400 text-xs">Recepção e pontualidade</span>
+                    </div>
+                </a>
+
+                <!-- 5. Transporte Corporativo -->
+                <a href="javascript:void(0)" onclick="openModal('corporativoModal')" class="glass-panel fade-in-up delay-5 w-full rounded-2xl p-4 flex items-center cursor-pointer">
+                    <div class="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center mr-4 shrink-0 text-amber-400">
+                        <i class="fa-solid fa-briefcase text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span data-i18n="corporate_title" class="font-semibold text-gray-100">Transporte Corporativo</span>
+                        <span data-i18n="corporate_subtitle" class="text-slate-400 text-xs">Soluções para sua empresa</span>
+                    </div>
+                </a>
+
+                <!-- 6. Localização / Atendimento -->
+                <a href="javascript:void(0)" onclick="openModal('localizacaoModal')" class="glass-panel fade-in-up delay-6 w-full rounded-2xl p-4 flex items-center cursor-pointer">
+                    <div class="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center mr-4 shrink-0 text-amber-400">
+                        <i class="fa-solid fa-map-location-dot text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span data-i18n="area_title" class="font-semibold text-gray-100">Área de Atendimento</span>
+                        <span data-i18n="area_subtitle" class="text-slate-400 text-xs">Consulte as regiões</span>
+                    </div>
+                </a>
+
+                <!-- 7. Avalie nosso serviço -->
+                <a href="https://share.google/GUVS1U0xXsD7DeJXM" target="_blank" rel="noopener noreferrer" class="glass-panel fade-in-up delay-7 w-full rounded-2xl p-4 flex items-center cursor-pointer">
+                    <div class="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center mr-4 shrink-0 text-amber-400">
+                        <i class="fa-solid fa-star text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span data-i18n="review_title" class="font-semibold text-gray-100">Avalie no Google</span>
+                        <span data-i18n="review_subtitle" class="text-slate-400 text-xs">Sua opinião é importante</span>
+                    </div>
+                </a>
+
+                <!-- 8. Instagram -->
+                <a href="https://www.instagram.com/comfort.transports?igsh=cjVsMGQ1aW5wdXVt" target="_blank" rel="noopener noreferrer" class="glass-panel fade-in-up delay-8 w-full rounded-2xl p-4 flex justify-center items-center cursor-pointer">
+                    <i class="fa-brands fa-instagram text-2xl text-pink-500 mr-2"></i>
+                    <span data-i18n="instagram_label" class="font-semibold text-gray-100 text-sm">Instagram</span>
+                </a>
+            </div>
+
+            <!-- Scroll Down Indicator -->
+            <a href="#site-content" class="mt-10 animate-bounce text-slate-500 hover:text-white transition-colors flex flex-col items-center text-xs tracking-widest uppercase">
+                <span data-i18n="scroll_hint" class="mb-2">Conheça a Empresa</span>
+                <i class="fa-solid fa-chevron-down text-lg"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- INSTITUTIONAL WEBSITE CONTENT -->
+    <main id="site-content" class="w-full relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+        
+        <!-- Cities Served Section -->
+        <section class="bg-slate-900/50 py-20 lg:py-28 border-b border-slate-800">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center mb-12 space-y-4">
+                    <div data-i18n="cities_badge" class="inline-block px-3 py-1 rounded-full bg-amber-900/20 border border-amber-700/40 text-amber-400 text-xs font-bold uppercase tracking-wider">
+                        Destinos
+                    </div>
+                    <h2 data-i18n="cities_title" class="text-3xl md:text-4xl font-bold text-white">Cidades Mais Atendidas</h2>
+                    <p data-i18n="cities_subtitle" class="text-slate-400 max-w-2xl mx-auto">Conheça alguns dos destinos históricos de Minas Gerais para onde levamos nossos clientes com conforto e segurança.</p>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- Ouro Preto -->
+                    <div class="group relative rounded-2xl overflow-hidden border border-amber-500/20 gold-glow aspect-[9/16] bg-black">
+                        <video class="w-full h-full object-cover" src="video/ouro-preto-museu-inconfidencia.mp4" autoplay muted loop playsinline></video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 class="text-white font-bold text-base leading-tight">Ouro Preto</h3>
+                            <p data-i18n="city1_desc" class="text-slate-300 text-xs">Museu da Inconfidência</p>
+                        </div>
+                    </div>
+
+                    <!-- Congonhas - Santuario -->
+                    <div class="group relative rounded-2xl overflow-hidden border border-amber-500/20 gold-glow aspect-[9/16] bg-black">
+                        <video class="w-full h-full object-cover" src="video/congonhas-santuario-bom-jesus.mp4" autoplay muted loop playsinline></video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 class="text-white font-bold text-base leading-tight">Congonhas</h3>
+                            <p data-i18n="city2_desc" class="text-slate-300 text-xs">Santuário do Bom Jesus</p>
+                        </div>
+                    </div>
+
+                    <!-- Congonhas - Doze Profetas -->
+                    <div class="group relative rounded-2xl overflow-hidden border border-amber-500/20 gold-glow aspect-[9/16] bg-black">
+                        <video class="w-full h-full object-cover" src="video/congonhas-doze-profetas.mp4" autoplay muted loop playsinline></video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 class="text-white font-bold text-base leading-tight">Congonhas</h3>
+                            <p data-i18n="city3_desc" class="text-slate-300 text-xs">Os Doze Profetas</p>
+                        </div>
+                    </div>
+
+                    <!-- Catas Altas -->
+                    <div class="group relative rounded-2xl overflow-hidden border border-amber-500/20 gold-glow aspect-[9/16] bg-black">
+                        <video class="w-full h-full object-cover" src="video/catas-altas.mp4" autoplay muted loop playsinline></video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 class="text-white font-bold text-base leading-tight">Catas Altas</h3>
+                            <p data-i18n="city4_desc" class="text-slate-300 text-xs">Paisagens Históricas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section class="bg-slate-900/50 border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-6 py-20 lg:py-28">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div data-i18n="about_badge" class="inline-block px-3 py-1 rounded-full bg-amber-900/20 border border-amber-700/40 text-amber-400 text-xs font-bold uppercase tracking-wider">
+                        Sobre Nós
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight">
+                        <span data-i18n="about_title_pre">Redefinindo o padrão de</span> <span data-i18n="about_title_highlight" class="gold-text">Mobilidade Executiva</span>.
+                    </h2>
+                    <p data-i18n="about_text" class="text-slate-400 leading-relaxed text-lg">
+                        A Comfort Transport's nasceu com o propósito de oferecer muito mais que uma viagem. Entregamos pontualidade absoluta, discrição, segurança e um conforto inigualável para executivos, autoridades e clientes exigentes.
+                    </p>
+                    <ul class="space-y-3 pt-4">
+                        <li class="flex items-center text-slate-300">
+                            <i class="fa-solid fa-check-circle text-amber-500 mr-3"></i> <span data-i18n="about_li1">Motoristas qualificados.</span>
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <i class="fa-solid fa-check-circle text-amber-500 mr-3"></i> <span data-i18n="about_li2">Veículos higienizados e revisados.</span>
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <i class="fa-solid fa-check-circle text-amber-500 mr-3"></i> <span data-i18n="about_li3">Carros com películas escuras.</span>
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <i class="fa-solid fa-check-circle text-amber-500 mr-3"></i> <span data-i18n="about_li4">Atendimento personalizado 24 horas.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl group border border-slate-800">
+                    <img src="img/tt.webp" alt="Comfort Transport's no aeroporto" class="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Fleet Section -->
+        <section class="bg-slate-900/50 py-20 lg:py-28 border-b border-slate-800">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16 space-y-4">
+                    <div data-i18n="fleet_badge" class="inline-block px-3 py-1 rounded-full bg-amber-900/20 border border-amber-700/40 text-amber-400 text-xs font-bold uppercase tracking-wider">
+                        Nossa Frota
+                    </div>
+                    <h2 data-i18n="fleet_title" class="text-3xl md:text-4xl font-bold text-white">Conheça os Veículos</h2>
+                    <p data-i18n="fleet_subtitle" class="text-slate-400 max-w-2xl mx-auto">Cada veículo é vistoriado, higienizado e conduzido por motoristas qualificados para garantir sua segurança e conforto.</p>
+                </div>
+
+                <div class="relative">
+                    <div id="frotaCarousel" class="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-6 px-6 sm:mx-0 sm:px-0 pb-2 sm:pb-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                        <!-- Jeep Compass -->
+                        <div class="frota-card snap-center shrink-0 w-[78%] sm:w-auto sm:shrink bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-colors group">
+                            <div class="aspect-[3/4] overflow-hidden bg-black flex items-center justify-center">
+                                <img src="img/compass.webp" alt="Jeep Compass" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-white mb-2">Jeep Compass</h3>
+                                <p data-i18n="veh1_desc" class="text-slate-400 text-xs mb-4 leading-relaxed">SUV robusto e sofisticado, com presença imponente para viagens executivas e trajetos pelas cidades históricas.</p>
+                                <div class="flex gap-2 text-xs text-slate-500">
+                                    <span class="bg-slate-900 px-2 py-1 rounded"><i class="fa-solid fa-user mr-1"></i> 4</span>
+                                    <span class="bg-slate-900 px-2 py-1 rounded"><i class="fa-solid fa-suitcase mr-1"></i> 3</span>
+                                    <span class="bg-slate-900 px-2 py-1 rounded"><i class="fa-solid fa-car-side mr-1"></i> SUV</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Volkswagen Virtus -->
+                        <div class="frota-card snap-center shrink-0 w-[78%] sm:w-auto sm:shrink bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-colors group">
+                            <div class="aspect-[3/4] overflow-hidden bg-black flex items-center justify-center">
+                                <img src="img/virtus.webp" alt="Volkswagen Virtus" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-white mb-2">Volkswagen Virtus</h3>
+                                <p data-i18n="veh2_desc" class="text-slate-400 text-xs mb-4 leading-relaxed">Design moderno e rodagem refinada, ideal para transfers e viagens intermunicipais com conforto.</p>
+                                <div class="flex gap-2 text-xs text-slate-500">
+                                    <span class="bg-slate-900 px-2 py-1 rounded"><i class="fa-solid fa-user mr-1"></i> 4</span>
+                                    <span class="bg-slate-900 px-2 py-1 rounded"><i class="fa-solid fa-suitcase mr-1"></i> 3</span>
+                                    <span class="bg-slate-900 px-2 py-1 rounded"><i class="fa-solid fa-car mr-1"></i> Sedan</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nissan Sentra -->
+                        <div class="frota-card snap-center shrink-0 w-[78%] sm:w-auto sm:shrink bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-colors group">
+                            <div class="aspect-[3/4] overflow-hidden bg-black flex items-center justify-center">
+                                <img src="img/nissan.webp" alt="Nissan Sentra" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-white mb-2">Nissan Sentra</h3>
+                                <p data-i18n="veh3_desc" class="text-slate-400 text-xs mb-4 leading-relaxed">Sedan de alto padrão, com acabamento premium e rodagem silenciosa para reuniões e compromissos de negócios.</p>
+                                <div class="flex gap-2 text-xs text-slate-500">
+                                    <span class="bg-slate-900 px-2 py-1 rounded"><i class="fa-solid fa-user mr-1"></i> 4</span>
+                                    <span class="bg-slate-900 px-2 py-1 rounded"><i class="fa-solid fa-suitcase mr-1"></i> 3</span>
+                                    <span class="bg-slate-900 px-2 py-1 rounded"><i class="fa-solid fa-car mr-1"></i> Sedan</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chevrolet Cruze -->
+                        <div class="frota-card snap-center shrink-0 w-[78%] sm:w-auto sm:shrink bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-colors group">
+                            <div class="aspect-[3/4] overflow-hidden bg-black flex items-center justify-center">
+                                <img src="img/cruze.webp" alt="Chevrolet Cruze" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-white mb-2">Chevrolet Cruze</h3>
+                                <p data-i18n="veh4_desc" class="text-slate-400 text-xs mb-4 leading-relaxed">Elegância e estabilidade para transfers de aeroporto e trajetos longos com máximo conforto.</p>
+                                <div class="flex gap-2 text-xs text-slate-500">
+                                    <span class="bg-slate-900 px-2 py-1 rounded"><i class="fa-solid fa-user mr-1"></i> 4</span>
+                                    <span class="bg-slate-900 px-2 py-1 rounded"><i class="fa-solid fa-suitcase mr-1"></i> 3</span>
+                                    <span class="bg-slate-900 px-2 py-1 rounded"><i class="fa-solid fa-car mr-1"></i> Sedan</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile-only navigation arrows -->
+                    <button onclick="scrollFrota(-1)" aria-label="Veículo anterior" class="sm:hidden absolute -left-1 top-1/3 -translate-y-1/2 w-10 h-10 rounded-full bg-black/70 border border-amber-500/40 text-amber-400 flex items-center justify-center backdrop-blur-sm active:scale-95 transition-transform">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button onclick="scrollFrota(1)" aria-label="Próximo veículo" class="sm:hidden absolute -right-1 top-1/3 -translate-y-1/2 w-10 h-10 rounded-full bg-black/70 border border-amber-500/40 text-amber-400 flex items-center justify-center backdrop-blur-sm active:scale-95 transition-transform">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Mobile hint -->
+                    <p class="sm:hidden text-center text-slate-500 text-xs mt-3 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-arrows-left-right"></i> <span data-i18n="fleet_hint">Arraste para o lado para ver os outros veículos</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Details -->
+        <section class="bg-slate-900/50 py-20 lg:py-28">
+            <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-12">
+                <div data-i18n="spec_badge" class="inline-block px-3 py-1 rounded-full bg-amber-900/20 border border-amber-700/40 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4">
+                    Especialidades
+                </div>
+                <h2 data-i18n="spec_title" class="text-3xl md:text-4xl font-bold text-white">No que a gente manda bem</h2>
+            </div>
+
+            <div class="divide-y divide-slate-800 border-t border-b border-slate-800">
+                <!-- Service Item -->
+                <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8">
+                    <span class="text-4xl font-bold text-slate-800 md:w-16 shrink-0 leading-none">01</span>
+                    <div class="flex items-center gap-3 md:w-64 shrink-0">
+                        <i class="fa-solid fa-plane-arrival text-amber-400 text-lg shrink-0"></i>
+                        <h3 data-i18n="spec1_title" class="text-lg font-bold text-white">Receptivo em Aeroportos</h3>
+                    </div>
+                    <p data-i18n="spec1_desc" class="text-slate-400 text-sm leading-relaxed">Acompanhamos o voo pelo aplicativo e já estamos no saguão quando você desce do avião, com plaquinha e sem cobrar hora de espera se o voo atrasar.</p>
+                </div>
+                <!-- Service Item -->
+                <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8">
+                    <span class="text-4xl font-bold text-slate-800 md:w-16 shrink-0 leading-none">02</span>
+                    <div class="flex items-center gap-3 md:w-64 shrink-0">
+                        <i class="fa-solid fa-building-user text-amber-400 text-lg shrink-0"></i>
+                        <h3 data-i18n="spec2_title" class="text-lg font-bold text-white">Diárias Corporativas</h3>
+                    </div>
+                    <p data-i18n="spec2_desc" class="text-slate-400 text-sm leading-relaxed">O carro e o motorista ficam parados esperando você em reunião, evento ou visita técnica pelo tempo que precisar, sem taxa por hora parada.</p>
+                </div>
+                <!-- Service Item -->
+                <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8">
+                    <span class="text-4xl font-bold text-slate-800 md:w-16 shrink-0 leading-none">03</span>
+                    <div class="flex items-center gap-3 md:w-64 shrink-0">
+                        <i class="fa-solid fa-champagne-glasses text-amber-400 text-lg shrink-0"></i>
+                        <h3 data-i18n="spec3_title" class="text-lg font-bold text-white">Eventos e Casamentos</h3>
+                    </div>
+                    <p data-i18n="spec3_desc" class="text-slate-400 text-sm leading-relaxed">Já rodamos noivas, padrinhos e convidados em casamentos e formaturas pela região dos Inconfidentes, sempre chegando no horário combinado com a cerimônia.</p>
+                </div>
+                <!-- Service Item -->
+                <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8">
+                    <span class="text-4xl font-bold text-slate-800 md:w-16 shrink-0 leading-none">04</span>
+                    <div class="flex items-center gap-3 md:w-64 shrink-0">
+                        <i class="fa-solid fa-route text-amber-400 text-lg shrink-0"></i>
+                        <h3 data-i18n="spec4_title" class="text-lg font-bold text-white">Viagens Intermunicipais</h3>
+                    </div>
+                    <p data-i18n="spec4_desc" class="text-slate-400 text-sm leading-relaxed">De Ouro Preto a Belo Horizonte, Congonhas, Mariana ou capitais vizinhas, sem parar em rodoviária nem dividir o carro com desconhecido.</p>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-slate-950/70 py-12 border-t border-slate-800">
+            <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="img/logo.webp" alt="Comfort Transport's" class="w-10 h-10 rounded-full object-cover border border-amber-500/40">
+                        <span class="text-xl font-bold gold-text-animated tracking-tight">Comfort Transport's</span>
+                    </div>
+
+                    <div class="space-y-2.5 text-sm text-slate-400">
+                        <a href="javascript:void(0)" onclick="waSend('wa_help')" class="flex items-center gap-2.5 hover:text-white transition-colors">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 w-4"></i> (31) 99668-9735
+                        </a>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-map-location-dot text-amber-400 w-4"></i> Ouro Preto - MG
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-regular fa-clock text-amber-400 w-4"></i> <span data-i18n="hero_available">Disponível 24/7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/comfort.transports?igsh=cjVsMGQ1aW5wdXVt" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="javascript:void(0)" onclick="waSend('wa_help')" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-5xl mx-auto px-6 mt-8 pt-8 border-t border-slate-900 text-center text-slate-500 text-sm">
+                <p>&copy; <span id="currentYear"></span> Comfort Transport's. <span data-i18n="footer_rights">Todos os direitos reservados.</span></p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="javascript:void(0)" onclick="waSend('wa_help')" data-i18n-aria="wa_aria" aria-label="Falar no WhatsApp" class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center shadow-lg shadow-emerald-900/50 transition-transform hover:scale-110">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- MODALS -->
+
+    <!-- Modal de Agendamento -->
+    <div id="agendamentoModal" class="modal fixed inset-0 z-50 opacity-0 invisible bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="modal-content bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-md p-6 shadow-2xl relative overflow-hidden">
+            
+            <button onclick="closeModal('agendamentoModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-800">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            
+            <h2 class="text-2xl font-bold text-white mb-1 flex items-center">
+                <i class="fa-regular fa-calendar-check text-amber-500 mr-3"></i>
+                <span data-i18n="modal_schedule_title">Agendar Viagem</span>
+            </h2>
+            <p data-i18n="modal_schedule_subtitle" class="text-slate-400 text-sm mb-6">Preencha os dados abaixo para verificar disponibilidade.</p>
+
+            <form id="agendamentoForm" onsubmit="submitAgendamento(event)" class="space-y-4 text-sm">
+                <div>
+                    <label data-i18n="modal_schedule_origin_label" class="block text-slate-300 mb-1.5 font-medium">Endereço de Origem</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-location-dot absolute left-3 top-3 text-slate-500"></i>
+                        <input type="text" id="origem" required data-i18n-placeholder="modal_schedule_origin_placeholder" class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder-slate-600" placeholder="Ex: Aeroporto de Confins">
+                    </div>
+                </div>
+                <div>
+                    <label data-i18n="modal_schedule_dest_label" class="block text-slate-300 mb-1.5 font-medium">Endereço de Destino</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-flag-checkered absolute left-3 top-3 text-slate-500"></i>
+                        <input type="text" id="destino" required data-i18n-placeholder="modal_schedule_dest_placeholder" class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder-slate-600" placeholder="Ex: Hotel em Ouro Preto">
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-1/2">
+                        <label data-i18n="label_date" class="block text-slate-300 mb-1.5 font-medium">Data</label>
+                        <input type="date" id="data" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-amber-500 transition-all [color-scheme:dark]">
+                    </div>
+                    <div class="w-1/2">
+                        <label data-i18n="label_time" class="block text-slate-300 mb-1.5 font-medium">Horário</label>
+                        <input type="time" id="horario" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-amber-500 transition-all [color-scheme:dark]">
+                    </div>
+                </div>
+                <button type="submit" class="w-full mt-6 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/25 flex justify-center items-center">
+                    <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
+                    <span data-i18n="btn_requestQuote">Solicitar Orçamento</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Transfer Aeroporto -->
+    <div id="transferModal" class="modal fixed inset-0 z-50 opacity-0 invisible bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="modal-content bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-md p-6 shadow-2xl relative overflow-hidden">
+
+            <button onclick="closeModal('transferModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-800">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <h2 class="text-2xl font-bold text-white mb-1 flex items-center">
+                <i class="fa-solid fa-plane-departure text-amber-500 mr-3"></i>
+                <span data-i18n="transferLink_title">Transfer Aeroporto</span>
+            </h2>
+            <p data-i18n="modal_transfer_subtitle" class="text-slate-400 text-sm mb-6">Selecione o aeroporto e os detalhes do seu voo.</p>
+
+            <form id="transferForm" onsubmit="submitTransfer(event)" class="space-y-4 text-sm">
+                <div>
+                    <label data-i18n="modal_transfer_airport_label" class="block text-slate-300 mb-1.5 font-medium">Aeroporto</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-plane absolute left-3 top-3 text-slate-500"></i>
+                        <select id="aeroporto" required class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all appearance-none [color-scheme:dark]">
+                            <option value="" disabled selected data-i18n="modal_transfer_airport_placeholder">Selecione o aeroporto mais próximo</option>
+                            <option value="Aeroporto Internacional de Confins - Tancredo Neves (CNF)">Confins - Tancredo Neves (CNF) · ~100 km</option>
+                            <option value="Aeroporto da Pampulha (PLU)">Pampulha (PLU) · ~95 km</option>
+                            <option value="Aeroporto de Ipatinga - Usiminas (IPN)">Ipatinga - Usiminas (IPN) · ~180 km</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label data-i18n="modal_transfer_direction_label" class="block text-slate-300 mb-1.5 font-medium">Sentido</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-right-left absolute left-3 top-3 text-slate-500"></i>
+                        <select id="sentidoTransfer" required class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all appearance-none [color-scheme:dark]">
+                            <option value="Desembarque (Aeroporto → Ouro Preto)" data-i18n="modal_transfer_direction_opt1">Desembarque (Aeroporto → Ouro Preto)</option>
+                            <option value="Embarque (Ouro Preto → Aeroporto)" data-i18n="modal_transfer_direction_opt2">Embarque (Ouro Preto → Aeroporto)</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label data-i18n="modal_transfer_address_label" class="block text-slate-300 mb-1.5 font-medium">Endereço em Ouro Preto</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-location-dot absolute left-3 top-3 text-slate-500"></i>
+                        <input type="text" id="enderecoTransfer" required data-i18n-placeholder="modal_transfer_address_placeholder" class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder-slate-600" placeholder="Ex: Pousada no Centro Histórico">
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-1/2">
+                        <label data-i18n="modal_transfer_date_label" class="block text-slate-300 mb-1.5 font-medium">Data do Voo</label>
+                        <input type="date" id="dataTransfer" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-amber-500 transition-all [color-scheme:dark]">
+                    </div>
+                    <div class="w-1/2">
+                        <label data-i18n="modal_transfer_time_label" class="block text-slate-300 mb-1.5 font-medium">Horário do Voo</label>
+                        <input type="time" id="horarioTransfer" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-amber-500 transition-all [color-scheme:dark]">
+                    </div>
+                </div>
+                <button type="submit" class="w-full mt-6 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/25 flex justify-center items-center">
+                    <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
+                    <span data-i18n="btn_requestQuote">Solicitar Orçamento</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Transporte Corporativo -->
+    <div id="corporativoModal" class="modal fixed inset-0 z-50 opacity-0 invisible bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="modal-content bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-md p-6 shadow-2xl relative overflow-hidden max-h-[90vh] overflow-y-auto">
+
+            <button onclick="closeModal('corporativoModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-800">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <h2 class="text-2xl font-bold text-white mb-1 flex items-center">
+                <i class="fa-solid fa-briefcase text-amber-500 mr-3"></i>
+                <span data-i18n="corporate_title">Transporte Corporativo</span>
+            </h2>
+            <p data-i18n="modal_corp_subtitle" class="text-slate-400 text-sm mb-6">Conte um pouco sobre a sua empresa para montarmos a melhor proposta.</p>
+
+            <form id="corporativoForm" onsubmit="submitCorporativo(event)" class="space-y-4 text-sm">
+                <div>
+                    <label data-i18n="modal_corp_name_label" class="block text-slate-300 mb-1.5 font-medium">Seu Nome</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-3 top-3 text-slate-500"></i>
+                        <input type="text" id="corpNome" required class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder-slate-600" placeholder="Ex: Maria Silva">
+                    </div>
+                </div>
+                <div>
+                    <label data-i18n="modal_corp_company_label" class="block text-slate-300 mb-1.5 font-medium">Nome da Empresa</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-building absolute left-3 top-3 text-slate-500"></i>
+                        <input type="text" id="corpEmpresa" required class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder-slate-600" placeholder="Ex: Mineração ABC Ltda">
+                    </div>
+                </div>
+                <div>
+                    <label data-i18n="modal_corp_services_label" class="block text-slate-300 mb-2 font-medium">Serviços de Interesse</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center gap-3 bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 cursor-pointer hover:border-amber-500/50 transition-colors">
+                            <input type="checkbox" name="corpServico" value="corp_service1" class="w-4 h-4 accent-amber-500 shrink-0">
+                            <span data-i18n="corp_service1" class="text-slate-200">Diárias com motorista à disposição</span>
+                        </label>
+                        <label class="flex items-center gap-3 bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 cursor-pointer hover:border-amber-500/50 transition-colors">
+                            <input type="checkbox" name="corpServico" value="corp_service2" class="w-4 h-4 accent-amber-500 shrink-0">
+                            <span data-i18n="corp_service2" class="text-slate-200">Transfer de colaboradores/visitantes</span>
+                        </label>
+                        <label class="flex items-center gap-3 bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 cursor-pointer hover:border-amber-500/50 transition-colors">
+                            <input type="checkbox" name="corpServico" value="corp_service3" class="w-4 h-4 accent-amber-500 shrink-0">
+                            <span data-i18n="corp_service3" class="text-slate-200">Reuniões e eventos corporativos</span>
+                        </label>
+                        <label class="flex items-center gap-3 bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 cursor-pointer hover:border-amber-500/50 transition-colors">
+                            <input type="checkbox" name="corpServico" value="corp_service4" class="w-4 h-4 accent-amber-500 shrink-0">
+                            <span data-i18n="corp_service4" class="text-slate-200">Viagens intermunicipais para equipe</span>
+                        </label>
+                        <label class="flex items-center gap-3 bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 cursor-pointer hover:border-amber-500/50 transition-colors">
+                            <input type="checkbox" name="corpServico" value="corp_service5" class="w-4 h-4 accent-amber-500 shrink-0">
+                            <span data-i18n="corp_service5" class="text-slate-200">Contrato fixo mensal</span>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="w-full mt-6 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/25 flex justify-center items-center">
+                    <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
+                    <span data-i18n="modal_corp_submit">Falar com um Consultor</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Localização -->
+    <div id="localizacaoModal" class="modal fixed inset-0 z-50 opacity-0 invisible bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="modal-content bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+            <button onclick="closeModal('localizacaoModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-800">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            
+            <h2 class="text-2xl font-bold text-white mb-5 flex items-center">
+                <i class="fa-solid fa-map-location-dot text-amber-500 mr-3"></i>
+                <span data-i18n="area_title">Área de Atendimento</span>
+            </h2>
+
+            <div class="bg-slate-950 rounded-xl p-5 border border-slate-800 mb-5">
+                <h3 class="text-white font-semibold mb-2 flex items-center">
+                    <i class="fa-solid fa-building text-slate-400 mr-2"></i> <span data-i18n="modal_area_base_title">Base Principal</span>
+                </h3>
+                <p data-i18n-html="modal_area_base_text" class="text-slate-400 text-sm ml-6">
+                    Ouro Preto - MG<br>
+                    Atendimento em toda a região dos Inconfidentes.
+                </p>
+            </div>
+
+            <div class="space-y-3">
+                <h3 data-i18n="modal_area_coverage_title" class="text-white font-semibold text-sm uppercase tracking-wider text-slate-300 mb-3">Cobertura de Serviços</h3>
+                <ul class="text-slate-400 text-sm space-y-3">
+                    <li class="flex items-start">
+                        <div class="w-6 h-6 rounded-full bg-emerald-900/30 text-emerald-400 flex items-center justify-center mr-3 mt-0.5 shrink-0"><i class="fa-solid fa-check text-xs"></i></div>
+                        <div data-i18n-html="modal_area_li1">
+                            <strong class="text-slate-200">Aeroportos:</strong> Belo Horizonte - Confins (CNF) e Pampulha (PLU).
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="w-6 h-6 rounded-full bg-emerald-900/30 text-emerald-400 flex items-center justify-center mr-3 mt-0.5 shrink-0"><i class="fa-solid fa-check text-xs"></i></div>
+                        <div data-i18n-html="modal_area_li2">
+                            <strong class="text-slate-200">Interior:</strong> Viagens programadas para todo o estado de Minas Gerais.
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="w-6 h-6 rounded-full bg-emerald-900/30 text-emerald-400 flex items-center justify-center mr-3 mt-0.5 shrink-0"><i class="fa-solid fa-check text-xs"></i></div>
+                        <div data-i18n-html="modal_area_li3">
+                            <strong class="text-slate-200">Interestadual:</strong> Capitais próximas sob consulta prévia (SP, RJ, ES).
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <button onclick="closeModal('localizacaoModal')" data-i18n="modal_area_button" class="w-full mt-8 bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-4 rounded-xl transition-colors">
+                Entendi
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // CONFIGURATION
+        // Insert the actual WhatsApp Number here (Country Code + Area Code + Number)
+        const WHATSAPP_NUMBER = '5531996689735';
+        const COMPANY_NAME = "Comfort Transport's";
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        /**
+         * Opens WhatsApp with a pre-filled message
+         */
+        function openWhatsApp(message) {
+            const encodedMessage = encodeURIComponent(message);
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            window.open(url, '_blank');
+        }
+
+        /**
+         * i18n: PT / EN / ES translations
+         */
+        const translations = {
+            pt: {
+                meta_title: "Comfort Transport's | Transporte Executivo",
+                hero_subtitle: "Transporte Executivo de Excelência",
+                hero_saveContact: "Salvar contato",
+                hero_available: "Disponível 24/7",
+                cta_title: "Solicitar Corrida",
+                cta_subtitle: "Atendimento imediato",
+                schedule_title: "Agendar Transporte",
+                schedule_subtitle: "Viagens programadas e eventos",
+                transferLink_title: "Transfer Aeroporto",
+                transferLink_subtitle: "Recepção e pontualidade",
+                corporate_title: "Transporte Corporativo",
+                corporate_subtitle: "Soluções para sua empresa",
+                area_title: "Área de Atendimento",
+                area_subtitle: "Consulte as regiões",
+                review_title: "Avalie no Google",
+                review_subtitle: "Sua opinião é importante",
+                instagram_label: "Instagram",
+                scroll_hint: "Conheça a Empresa",
+                cities_badge: "Destinos",
+                cities_title: "Cidades Mais Atendidas",
+                cities_subtitle: "Conheça alguns dos destinos históricos de Minas Gerais para onde levamos nossos clientes com conforto e segurança.",
+                city1_desc: "Museu da Inconfidência",
+                city2_desc: "Santuário do Bom Jesus",
+                city3_desc: "Os Doze Profetas",
+                city4_desc: "Paisagens Históricas",
+                about_badge: "Sobre Nós",
+                about_title_pre: "Redefinindo o padrão de",
+                about_title_highlight: "Mobilidade Executiva",
+                about_text: "A Comfort Transport's nasceu com o propósito de oferecer muito mais que uma viagem. Entregamos pontualidade absoluta, discrição, segurança e um conforto inigualável para executivos, autoridades e clientes exigentes.",
+                about_li1: "Motoristas qualificados.",
+                about_li2: "Veículos higienizados e revisados.",
+                about_li3: "Carros com películas escuras.",
+                about_li4: "Atendimento personalizado 24 horas.",
+                fleet_badge: "Nossa Frota",
+                fleet_title: "Conheça os Veículos",
+                fleet_subtitle: "Cada veículo é vistoriado, higienizado e conduzido por motoristas qualificados para garantir sua segurança e conforto.",
+                veh1_desc: "SUV robusto e sofisticado, com presença imponente para viagens executivas e trajetos pelas cidades históricas.",
+                veh2_desc: "Design moderno e rodagem refinada, ideal para transfers e viagens intermunicipais com conforto.",
+                veh3_desc: "Sedan de alto padrão, com acabamento premium e rodagem silenciosa para reuniões e compromissos de negócios.",
+                veh4_desc: "Elegância e estabilidade para transfers de aeroporto e trajetos longos com máximo conforto.",
+                fleet_hint: "Arraste para o lado para ver os outros veículos",
+                spec_badge: "Especialidades",
+                spec_title: "No que a gente manda bem",
+                spec1_title: "Receptivo em Aeroportos",
+                spec1_desc: "Acompanhamos o voo pelo aplicativo e já estamos no saguão quando você desce do avião, com plaquinha e sem cobrar hora de espera se o voo atrasar.",
+                spec2_title: "Diárias Corporativas",
+                spec2_desc: "O carro e o motorista ficam parados esperando você em reunião, evento ou visita técnica pelo tempo que precisar, sem taxa por hora parada.",
+                spec3_title: "Eventos e Casamentos",
+                spec3_desc: "Já rodamos noivas, padrinhos e convidados em casamentos e formaturas pela região dos Inconfidentes, sempre chegando no horário combinado com a cerimônia.",
+                spec4_title: "Viagens Intermunicipais",
+                spec4_desc: "De Ouro Preto a Belo Horizonte, Congonhas, Mariana ou capitais vizinhas, sem parar em rodoviária nem dividir o carro com desconhecido.",
+                footer_rights: "Todos os direitos reservados.",
+                wa_aria: "Falar no WhatsApp",
+                modal_schedule_title: "Agendar Viagem",
+                modal_schedule_subtitle: "Preencha os dados abaixo para verificar disponibilidade.",
+                modal_schedule_origin_label: "Endereço de Origem",
+                modal_schedule_origin_placeholder: "Ex: Aeroporto de Confins",
+                modal_schedule_dest_label: "Endereço de Destino",
+                modal_schedule_dest_placeholder: "Ex: Hotel em Ouro Preto",
+                label_date: "Data",
+                label_time: "Horário",
+                btn_requestQuote: "Solicitar Orçamento",
+                modal_transfer_subtitle: "Selecione o aeroporto e os detalhes do seu voo.",
+                modal_transfer_airport_label: "Aeroporto",
+                modal_transfer_airport_placeholder: "Selecione o aeroporto mais próximo",
+                modal_transfer_direction_label: "Sentido",
+                modal_transfer_direction_opt1: "Desembarque (Aeroporto → Ouro Preto)",
+                modal_transfer_direction_opt2: "Embarque (Ouro Preto → Aeroporto)",
+                modal_transfer_address_label: "Endereço em Ouro Preto",
+                modal_transfer_address_placeholder: "Ex: Pousada no Centro Histórico",
+                modal_transfer_date_label: "Data do Voo",
+                modal_transfer_time_label: "Horário do Voo",
+                modal_corp_subtitle: "Conte um pouco sobre a sua empresa para montarmos a melhor proposta.",
+                modal_corp_name_label: "Seu Nome",
+                modal_corp_company_label: "Nome da Empresa",
+                modal_corp_services_label: "Serviços de Interesse",
+                corp_service1: "Diárias com motorista à disposição",
+                corp_service2: "Transfer de colaboradores/visitantes",
+                corp_service3: "Reuniões e eventos corporativos",
+                corp_service4: "Viagens intermunicipais para equipe",
+                corp_service5: "Contrato fixo mensal",
+                modal_corp_submit: "Falar com um Consultor",
+                modal_area_base_title: "Base Principal",
+                modal_area_base_text: "Ouro Preto - MG<br>Atendimento em toda a região dos Inconfidentes.",
+                modal_area_coverage_title: "Cobertura de Serviços",
+                modal_area_li1: '<strong class="text-slate-200">Aeroportos:</strong> Belo Horizonte - Confins (CNF) e Pampulha (PLU).',
+                modal_area_li2: '<strong class="text-slate-200">Interior:</strong> Viagens programadas para todo o estado de Minas Gerais.',
+                modal_area_li3: '<strong class="text-slate-200">Interestadual:</strong> Capitais próximas sob consulta prévia (SP, RJ, ES).',
+                modal_area_button: "Entendi",
+                wa_ride: "Olá, gostaria de solicitar uma corrida agora.",
+                wa_help: "Olá, gostaria de mais informações sobre os serviços.",
+                wa_scheduleHeader: "Nova Cotação",
+                wa_origin: "Origem",
+                wa_destination: "Destino",
+                wa_date: "Data",
+                wa_time: "Horário",
+                wa_scheduleClosing: "Olá! Gostaria de confirmar a disponibilidade e o valor para este trajeto.",
+                wa_transferHeader: "Transfer Aeroporto",
+                wa_airport: "Aeroporto",
+                wa_direction: "Sentido",
+                wa_addressOP: "Endereço em Ouro Preto",
+                wa_flightDate: "Data do Voo",
+                wa_flightTime: "Horário do Voo",
+                wa_transferClosing: "Olá! Gostaria de confirmar a disponibilidade e o valor para este transfer.",
+                wa_corpHeader: "Transporte Corporativo",
+                wa_name: "Nome",
+                wa_company: "Empresa",
+                wa_services: "Serviços de interesse",
+                wa_toDefine: "A definir",
+                wa_corpClosing: "Olá! Gostaria de conversar sobre uma parceria de transporte corporativo."
+            },
+            en: {
+                meta_title: "Comfort Transport's | Executive Transportation",
+                hero_subtitle: "Executive Transportation Excellence",
+                hero_saveContact: "Save contact",
+                hero_available: "Available 24/7",
+                cta_title: "Request a Ride",
+                cta_subtitle: "Immediate service",
+                schedule_title: "Schedule Transport",
+                schedule_subtitle: "Planned trips and events",
+                transferLink_title: "Airport Transfer",
+                transferLink_subtitle: "Pickup and punctuality",
+                corporate_title: "Corporate Transportation",
+                corporate_subtitle: "Solutions for your company",
+                area_title: "Service Area",
+                area_subtitle: "Check the regions",
+                review_title: "Rate us on Google",
+                review_subtitle: "Your opinion matters",
+                instagram_label: "Instagram",
+                scroll_hint: "Learn About Us",
+                cities_badge: "Destinations",
+                cities_title: "Most Visited Cities",
+                cities_subtitle: "Discover some of the historic destinations in Minas Gerais where we take our clients with comfort and safety.",
+                city1_desc: "Inconfidência Museum",
+                city2_desc: "Bom Jesus Sanctuary",
+                city3_desc: "The Twelve Prophets",
+                city4_desc: "Historic Landscapes",
+                about_badge: "About Us",
+                about_title_pre: "Redefining the standard of",
+                about_title_highlight: "Executive Mobility",
+                about_text: "Comfort Transport's was founded with the purpose of offering much more than a ride. We deliver absolute punctuality, discretion, safety, and unmatched comfort for executives, authorities, and demanding clients.",
+                about_li1: "Qualified drivers.",
+                about_li2: "Sanitized and inspected vehicles.",
+                about_li3: "Cars with tinted windows.",
+                about_li4: "Personalized 24-hour service.",
+                fleet_badge: "Our Fleet",
+                fleet_title: "Meet the Vehicles",
+                fleet_subtitle: "Every vehicle is inspected, sanitized, and driven by qualified drivers to ensure your safety and comfort.",
+                veh1_desc: "A robust, sophisticated SUV with an imposing presence for executive trips and routes through the historic cities.",
+                veh2_desc: "Modern design and refined ride quality, ideal for transfers and intercity trips in comfort.",
+                veh3_desc: "A high-standard sedan with premium finishing and a quiet ride for meetings and business appointments.",
+                veh4_desc: "Elegance and stability for airport transfers and long trips with maximum comfort.",
+                fleet_hint: "Swipe sideways to see the other vehicles",
+                spec_badge: "Specialties",
+                spec_title: "What we're great at",
+                spec1_title: "Airport Reception",
+                spec1_desc: "We track your flight through the app and we're already in the lobby when you land, with a name sign and no waiting fee if the flight is delayed.",
+                spec2_title: "Corporate Day Rates",
+                spec2_desc: "The car and driver wait for you at meetings, events, or site visits for as long as you need, with no idle-time fee.",
+                spec3_title: "Events and Weddings",
+                spec3_desc: "We've driven brides, best men, and guests to weddings and graduations throughout the Inconfidentes region, always arriving on the time agreed with the ceremony.",
+                spec4_title: "Intercity Trips",
+                spec4_desc: "From Ouro Preto to Belo Horizonte, Congonhas, Mariana, or nearby state capitals, with no bus station stops or sharing the car with strangers.",
+                footer_rights: "All rights reserved.",
+                wa_aria: "Chat on WhatsApp",
+                modal_schedule_title: "Schedule a Trip",
+                modal_schedule_subtitle: "Fill in the details below to check availability.",
+                modal_schedule_origin_label: "Pickup Address",
+                modal_schedule_origin_placeholder: "E.g.: Confins Airport",
+                modal_schedule_dest_label: "Destination Address",
+                modal_schedule_dest_placeholder: "E.g.: Hotel in Ouro Preto",
+                label_date: "Date",
+                label_time: "Time",
+                btn_requestQuote: "Request a Quote",
+                modal_transfer_subtitle: "Select the airport and your flight details.",
+                modal_transfer_airport_label: "Airport",
+                modal_transfer_airport_placeholder: "Select the nearest airport",
+                modal_transfer_direction_label: "Direction",
+                modal_transfer_direction_opt1: "Arrival (Airport → Ouro Preto)",
+                modal_transfer_direction_opt2: "Departure (Ouro Preto → Airport)",
+                modal_transfer_address_label: "Address in Ouro Preto",
+                modal_transfer_address_placeholder: "E.g.: Inn in the Historic Center",
+                modal_transfer_date_label: "Flight Date",
+                modal_transfer_time_label: "Flight Time",
+                modal_corp_subtitle: "Tell us a bit about your company so we can put together the best proposal.",
+                modal_corp_name_label: "Your Name",
+                modal_corp_company_label: "Company Name",
+                modal_corp_services_label: "Services of Interest",
+                corp_service1: "Day rate with driver on standby",
+                corp_service2: "Employee/visitor transfer",
+                corp_service3: "Corporate meetings and events",
+                corp_service4: "Intercity trips for teams",
+                corp_service5: "Fixed monthly contract",
+                modal_corp_submit: "Talk to a Consultant",
+                modal_area_base_title: "Main Base",
+                modal_area_base_text: "Ouro Preto - MG<br>Service throughout the Inconfidentes region.",
+                modal_area_coverage_title: "Service Coverage",
+                modal_area_li1: '<strong class="text-slate-200">Airports:</strong> Belo Horizonte - Confins (CNF) and Pampulha (PLU).',
+                modal_area_li2: '<strong class="text-slate-200">Countryside:</strong> Scheduled trips throughout the state of Minas Gerais.',
+                modal_area_li3: '<strong class="text-slate-200">Interstate:</strong> Nearby state capitals upon prior request (SP, RJ, ES).',
+                modal_area_button: "Got it",
+                wa_ride: "Hi, I'd like to request a ride now.",
+                wa_help: "Hi, I'd like more information about the services.",
+                wa_scheduleHeader: "New Quote Request",
+                wa_origin: "Pickup",
+                wa_destination: "Destination",
+                wa_date: "Date",
+                wa_time: "Time",
+                wa_scheduleClosing: "Hi! I'd like to confirm availability and pricing for this route.",
+                wa_transferHeader: "Airport Transfer",
+                wa_airport: "Airport",
+                wa_direction: "Direction",
+                wa_addressOP: "Address in Ouro Preto",
+                wa_flightDate: "Flight Date",
+                wa_flightTime: "Flight Time",
+                wa_transferClosing: "Hi! I'd like to confirm availability and pricing for this transfer.",
+                wa_corpHeader: "Corporate Transportation",
+                wa_name: "Name",
+                wa_company: "Company",
+                wa_services: "Services of interest",
+                wa_toDefine: "To be defined",
+                wa_corpClosing: "Hi! I'd like to talk about a corporate transportation partnership."
+            },
+            es: {
+                meta_title: "Comfort Transport's | Transporte Ejecutivo",
+                hero_subtitle: "Transporte Ejecutivo de Excelencia",
+                hero_saveContact: "Guardar contacto",
+                hero_available: "Disponible 24/7",
+                cta_title: "Solicitar Viaje",
+                cta_subtitle: "Atención inmediata",
+                schedule_title: "Agendar Transporte",
+                schedule_subtitle: "Viajes programados y eventos",
+                transferLink_title: "Traslado al Aeropuerto",
+                transferLink_subtitle: "Recepción y puntualidad",
+                corporate_title: "Transporte Corporativo",
+                corporate_subtitle: "Soluciones para su empresa",
+                area_title: "Área de Cobertura",
+                area_subtitle: "Consulte las regiones",
+                review_title: "Califícanos en Google",
+                review_subtitle: "Su opinión es importante",
+                instagram_label: "Instagram",
+                scroll_hint: "Conozca la Empresa",
+                cities_badge: "Destinos",
+                cities_title: "Ciudades Más Atendidas",
+                cities_subtitle: "Conozca algunos de los destinos históricos de Minas Gerais adonde llevamos a nuestros clientes con comodidad y seguridad.",
+                city1_desc: "Museo de la Inconfidencia",
+                city2_desc: "Santuario del Buen Jesús",
+                city3_desc: "Los Doce Profetas",
+                city4_desc: "Paisajes Históricos",
+                about_badge: "Sobre Nosotros",
+                about_title_pre: "Redefiniendo el estándar de",
+                about_title_highlight: "Movilidad Ejecutiva",
+                about_text: "Comfort Transport's nació con el propósito de ofrecer mucho más que un viaje. Entregamos puntualidad absoluta, discreción, seguridad y una comodidad inigualable para ejecutivos, autoridades y clientes exigentes.",
+                about_li1: "Conductores calificados.",
+                about_li2: "Vehículos higienizados y revisados.",
+                about_li3: "Autos con vidrios polarizados.",
+                about_li4: "Atención personalizada las 24 horas.",
+                fleet_badge: "Nuestra Flota",
+                fleet_title: "Conozca los Vehículos",
+                fleet_subtitle: "Cada vehículo es inspeccionado, higienizado y conducido por choferes calificados para garantizar su seguridad y comodidad.",
+                veh1_desc: "SUV robusto y sofisticado, con presencia imponente para viajes ejecutivos y trayectos por las ciudades históricas.",
+                veh2_desc: "Diseño moderno y rodaje refinado, ideal para traslados y viajes intermunicipales con comodidad.",
+                veh3_desc: "Sedán de alto nivel, con acabado premium y rodaje silencioso para reuniones y compromisos de negocios.",
+                veh4_desc: "Elegancia y estabilidad para traslados al aeropuerto y trayectos largos con máxima comodidad.",
+                fleet_hint: "Deslice hacia el lado para ver los otros vehículos",
+                spec_badge: "Especialidades",
+                spec_title: "En lo que somos buenos",
+                spec1_title: "Recepción en Aeropuertos",
+                spec1_desc: "Seguimos su vuelo por la aplicación y ya estamos en el lobby cuando usted baja del avión, con cartel de identificación y sin cobrar espera si el vuelo se retrasa.",
+                spec2_title: "Diarias Corporativas",
+                spec2_desc: "El auto y el chofer esperan por usted en reuniones, eventos o visitas técnicas por el tiempo que necesite, sin tarifa por hora de espera.",
+                spec3_title: "Eventos y Bodas",
+                spec3_desc: "Ya hemos llevado novias, padrinos e invitados en bodas y graduaciones por la región de los Inconfidentes, llegando siempre en el horario acordado con la ceremonia.",
+                spec4_title: "Viajes Intermunicipales",
+                spec4_desc: "De Ouro Preto a Belo Horizonte, Congonhas, Mariana o capitales vecinas, sin parar en terminal de autobuses ni compartir el auto con desconocidos.",
+                footer_rights: "Todos los derechos reservados.",
+                wa_aria: "Hablar por WhatsApp",
+                modal_schedule_title: "Agendar Viaje",
+                modal_schedule_subtitle: "Complete los datos a continuación para verificar disponibilidad.",
+                modal_schedule_origin_label: "Dirección de Origen",
+                modal_schedule_origin_placeholder: "Ej: Aeropuerto de Confins",
+                modal_schedule_dest_label: "Dirección de Destino",
+                modal_schedule_dest_placeholder: "Ej: Hotel en Ouro Preto",
+                label_date: "Fecha",
+                label_time: "Hora",
+                btn_requestQuote: "Solicitar Presupuesto",
+                modal_transfer_subtitle: "Seleccione el aeropuerto y los detalles de su vuelo.",
+                modal_transfer_airport_label: "Aeropuerto",
+                modal_transfer_airport_placeholder: "Seleccione el aeropuerto más cercano",
+                modal_transfer_direction_label: "Sentido",
+                modal_transfer_direction_opt1: "Llegada (Aeropuerto → Ouro Preto)",
+                modal_transfer_direction_opt2: "Salida (Ouro Preto → Aeropuerto)",
+                modal_transfer_address_label: "Dirección en Ouro Preto",
+                modal_transfer_address_placeholder: "Ej: Posada en el Centro Histórico",
+                modal_transfer_date_label: "Fecha del Vuelo",
+                modal_transfer_time_label: "Hora del Vuelo",
+                modal_corp_subtitle: "Cuéntenos un poco sobre su empresa para armar la mejor propuesta.",
+                modal_corp_name_label: "Su Nombre",
+                modal_corp_company_label: "Nombre de la Empresa",
+                modal_corp_services_label: "Servicios de Interés",
+                corp_service1: "Diarias con chofer a disposición",
+                corp_service2: "Traslado de empleados/visitantes",
+                corp_service3: "Reuniones y eventos corporativos",
+                corp_service4: "Viajes intermunicipales para el equipo",
+                corp_service5: "Contrato fijo mensual",
+                modal_corp_submit: "Hablar con un Asesor",
+                modal_area_base_title: "Base Principal",
+                modal_area_base_text: "Ouro Preto - MG<br>Servicio en toda la región de los Inconfidentes.",
+                modal_area_coverage_title: "Cobertura de Servicios",
+                modal_area_li1: '<strong class="text-slate-200">Aeropuertos:</strong> Belo Horizonte - Confins (CNF) y Pampulha (PLU).',
+                modal_area_li2: '<strong class="text-slate-200">Interior:</strong> Viajes programados para todo el estado de Minas Gerais.',
+                modal_area_li3: '<strong class="text-slate-200">Interestatal:</strong> Capitales cercanas mediante consulta previa (SP, RJ, ES).',
+                modal_area_button: "Entendido",
+                wa_ride: "Hola, me gustaría solicitar un viaje ahora.",
+                wa_help: "Hola, me gustaría más información sobre los servicios.",
+                wa_scheduleHeader: "Nueva Cotización",
+                wa_origin: "Origen",
+                wa_destination: "Destino",
+                wa_date: "Fecha",
+                wa_time: "Hora",
+                wa_scheduleClosing: "¡Hola! Me gustaría confirmar la disponibilidad y el valor de este trayecto.",
+                wa_transferHeader: "Traslado al Aeropuerto",
+                wa_airport: "Aeropuerto",
+                wa_direction: "Sentido",
+                wa_addressOP: "Dirección en Ouro Preto",
+                wa_flightDate: "Fecha del Vuelo",
+                wa_flightTime: "Hora del Vuelo",
+                wa_transferClosing: "¡Hola! Me gustaría confirmar la disponibilidad y el valor de este traslado.",
+                wa_corpHeader: "Transporte Corporativo",
+                wa_name: "Nombre",
+                wa_company: "Empresa",
+                wa_services: "Servicios de interés",
+                wa_toDefine: "Por definir",
+                wa_corpClosing: "¡Hola! Me gustaría hablar sobre una asociación de transporte corporativo."
+            }
+        };
+
+        let currentLang = localStorage.getItem('comfort_lang') || 'pt';
+
+        function t(key) {
+            return (translations[currentLang] && translations[currentLang][key]) || translations.pt[key] || key;
+        }
+
+        function applyLanguage() {
+            document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : currentLang;
+            document.title = t('meta_title');
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                el.textContent = t(el.getAttribute('data-i18n'));
+            });
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                el.innerHTML = t(el.getAttribute('data-i18n-html'));
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder')));
+            });
+            document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+                el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria')));
+            });
+            document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === currentLang);
+            });
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('comfort_lang', lang);
+            applyLanguage();
+        }
+
+        /**
+         * Sends a pre-defined, translated WhatsApp message by key
+         */
+        function waSend(key) {
+            openWhatsApp(t(key));
+        }
+
+        /**
+         * Scrolls the mobile fleet carousel left/right by one card
+         */
+        function scrollFrota(direction) {
+            const carousel = document.getElementById('frotaCarousel');
+            const card = carousel.querySelector('.frota-card');
+            if (!card) return;
+            const gap = parseFloat(getComputedStyle(carousel).columnGap) || 24;
+            carousel.scrollBy({ left: direction * (card.offsetWidth + gap), behavior: 'smooth' });
+        }
+
+        /**
+         * Auto-advance the mobile fleet carousel every 2 seconds,
+         * looping back to the first vehicle at the end. Pauses briefly
+         * whenever the user drags/swipes it manually.
+         */
+        let frotaAutoplayTimer = null;
+        let frotaAutoplayPaused = false;
+
+        function frotaAutoplayTick() {
+            if (window.innerWidth >= 640 || frotaAutoplayPaused) return;
+            const carousel = document.getElementById('frotaCarousel');
+            if (!carousel) return;
+            const atEnd = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 5;
+            if (atEnd) {
+                carousel.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                scrollFrota(1);
+            }
+        }
+
+        function pauseFrotaAutoplay() {
+            frotaAutoplayPaused = true;
+            clearTimeout(pauseFrotaAutoplay._resumeTimer);
+            pauseFrotaAutoplay._resumeTimer = setTimeout(() => {
+                frotaAutoplayPaused = false;
+            }, 5000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousel = document.getElementById('frotaCarousel');
+            if (carousel) {
+                carousel.addEventListener('touchstart', pauseFrotaAutoplay, { passive: true });
+                carousel.addEventListener('mousedown', pauseFrotaAutoplay);
+            }
+            frotaAutoplayTimer = setInterval(frotaAutoplayTick, 2000);
+        });
+
+        /**
+         * Modal Logic
+         */
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal(this.id);
+                }
+            });
+        });
+
+        // Close modal on Escape key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
+
+        /**
+         * Handle Agendamento Form Submission
+         */
+        function submitAgendamento(event) {
+            event.preventDefault(); 
+            
+            const origem = document.getElementById('origem').value;
+            const destino = document.getElementById('destino').value;
+            const data = document.getElementById('data').value;
+            const horario = document.getElementById('horario').value;
+            
+            // Format date to the current language's locale
+            const dataObj = new Date(data + 'T00:00:00');
+            const dataFormatada = dataObj.toLocaleDateString(currentLang === 'pt' ? 'pt-BR' : currentLang);
+
+            const message = `*${t('wa_scheduleHeader')} - ${COMPANY_NAME}*%0A%0A` +
+                            `📍 *${t('wa_origin')}:* ${origem}%0A` +
+                            `🏁 *${t('wa_destination')}:* ${destino}%0A` +
+                            `📅 *${t('wa_date')}:* ${dataFormatada}%0A` +
+                            `⏰ *${t('wa_time')}:* ${horario}%0A%0A` +
+                            `${t('wa_scheduleClosing')}`;
+
+            closeModal('agendamentoModal');
+            
+            setTimeout(() => {
+                openWhatsApp(decodeURIComponent(message));
+                event.target.reset();
+            }, 300);
+        }
+
+        /**
+         * Handle Transfer Aeroporto Form Submission
+         */
+        function submitTransfer(event) {
+            event.preventDefault();
+
+            const aeroporto = document.getElementById('aeroporto').value;
+            const sentido = document.getElementById('sentidoTransfer').value;
+            const endereco = document.getElementById('enderecoTransfer').value;
+            const data = document.getElementById('dataTransfer').value;
+            const horario = document.getElementById('horarioTransfer').value;
+
+            // Format date to the current language's locale
+            const dataObj = new Date(data + 'T00:00:00');
+            const dataFormatada = dataObj.toLocaleDateString(currentLang === 'pt' ? 'pt-BR' : currentLang);
+
+            const message = `*${t('wa_transferHeader')} - ${COMPANY_NAME}*%0A%0A` +
+                            `✈️ *${t('wa_airport')}:* ${aeroporto}%0A` +
+                            `🔀 *${t('wa_direction')}:* ${sentido}%0A` +
+                            `📍 *${t('wa_addressOP')}:* ${endereco}%0A` +
+                            `📅 *${t('wa_flightDate')}:* ${dataFormatada}%0A` +
+                            `⏰ *${t('wa_flightTime')}:* ${horario}%0A%0A` +
+                            `${t('wa_transferClosing')}`;
+
+            closeModal('transferModal');
+
+            setTimeout(() => {
+                openWhatsApp(decodeURIComponent(message));
+                event.target.reset();
+            }, 300);
+        }
+
+        /**
+         * Handle Transporte Corporativo Form Submission
+         */
+        function submitCorporativo(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('corpNome').value;
+            const empresa = document.getElementById('corpEmpresa').value;
+            const servicos = Array.from(document.querySelectorAll('input[name="corpServico"]:checked')).map(el => t(el.value));
+
+            const servicosTexto = servicos.length
+                ? servicos.map(s => `• ${s}`).join('%0A')
+                : `• ${t('wa_toDefine')}`;
+
+            const message = `*${t('wa_corpHeader')} - ${COMPANY_NAME}*%0A%0A` +
+                            `👤 *${t('wa_name')}:* ${nome}%0A` +
+                            `🏢 *${t('wa_company')}:* ${empresa}%0A` +
+                            `🧾 *${t('wa_services')}:*%0A${servicosTexto}%0A%0A` +
+                            `${t('wa_corpClosing')}`;
+
+            closeModal('corporativoModal');
+
+            setTimeout(() => {
+                openWhatsApp(decodeURIComponent(message));
+                event.target.reset();
+            }, 300);
+        }
+
+        /**
+         * Generates and downloads a vCard (.vcf) file
+         */
+        function downloadVCard() {
+            const vCardData = 
+`BEGIN:VCARD
+VERSION:3.0
+FN:${COMPANY_NAME}
+ORG:${COMPANY_NAME}
+TEL;TYPE=WORK,VOICE:+${WHATSAPP_NUMBER}
+TITLE:Transporte Executivo
+NOTE:Segurança, conforto e pontualidade 24/7.
+END:VCARD`;
+
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'comfort_transports.vcf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Set minimum date for input type="date" to today to prevent past bookings
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            ['data', 'dataTransfer'].forEach(id => {
+                const dateInput = document.getElementById(id);
+                if (dateInput) {
+                    dateInput.setAttribute('min', today);
+                }
+            });
+
+            applyLanguage();
+        });
+    </script>
+</body>
+</html>
