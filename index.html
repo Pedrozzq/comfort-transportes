@@ -334,6 +334,23 @@
         body.preloading {
             overflow: hidden;
         }
+
+        /* Scroll-triggered reveal for institutional sections */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-6 { transition-delay: 0.6s; }
     </style>
 </head>
 
@@ -567,7 +584,7 @@
         <!-- Cities Served Section -->
         <section class="bg-slate-900/50 py-20 lg:py-28 border-b border-slate-800">
             <div class="max-w-5xl mx-auto px-6">
-                <div class="text-center mb-12 space-y-4">
+                <div class="reveal text-center mb-12 space-y-4">
                     <div data-i18n="cities_badge" class="inline-block px-3 py-1 rounded-full bg-amber-900/20 border border-amber-700/40 text-amber-400 text-xs font-bold uppercase tracking-wider">
                         Destinos
                     </div>
@@ -577,7 +594,7 @@
 
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
                     <!-- Ouro Preto -->
-                    <div class="group relative rounded-2xl overflow-hidden border border-amber-500/20 gold-glow aspect-[9/16] bg-black">
+                    <div class="reveal reveal-delay-1 group relative rounded-2xl overflow-hidden border border-amber-500/20 gold-glow aspect-[9/16] bg-black">
                         <video class="w-full h-full object-cover" src="video/ouro-preto-museu-inconfidencia.mp4" autoplay muted loop playsinline></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -587,7 +604,7 @@
                     </div>
 
                     <!-- Congonhas - Santuario -->
-                    <div class="group relative rounded-2xl overflow-hidden border border-amber-500/20 gold-glow aspect-[9/16] bg-black">
+                    <div class="reveal reveal-delay-2 group relative rounded-2xl overflow-hidden border border-amber-500/20 gold-glow aspect-[9/16] bg-black">
                         <video class="w-full h-full object-cover" src="video/congonhas-santuario-bom-jesus.mp4" autoplay muted loop playsinline></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -597,7 +614,7 @@
                     </div>
 
                     <!-- Congonhas - Doze Profetas -->
-                    <div class="group relative rounded-2xl overflow-hidden border border-amber-500/20 gold-glow aspect-[9/16] bg-black">
+                    <div class="reveal reveal-delay-3 group relative rounded-2xl overflow-hidden border border-amber-500/20 gold-glow aspect-[9/16] bg-black">
                         <video class="w-full h-full object-cover" src="video/congonhas-doze-profetas.mp4" autoplay muted loop playsinline></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -607,7 +624,7 @@
                     </div>
 
                     <!-- Catas Altas -->
-                    <div class="group relative rounded-2xl overflow-hidden border border-amber-500/20 gold-glow aspect-[9/16] bg-black">
+                    <div class="reveal reveal-delay-4 group relative rounded-2xl overflow-hidden border border-amber-500/20 gold-glow aspect-[9/16] bg-black">
                         <video class="w-full h-full object-cover" src="video/catas-altas.mp4" autoplay muted loop playsinline></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -622,38 +639,38 @@
         <!-- About Us Section -->
         <section id="sobre" class="bg-slate-900/50 border-b border-slate-800">
         <div class="max-w-3xl mx-auto px-6 py-20 lg:py-28">
-            <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight text-center mb-4">
+            <h2 class="reveal text-3xl md:text-4xl font-bold text-white leading-tight text-center mb-4">
                 <span data-i18n="about_title_pre">Redefinindo o padrão de</span> <span data-i18n="about_title_highlight" class="silver-text">Mobilidade Executiva</span>.
             </h2>
-            <p data-i18n="about_text" class="text-slate-400 leading-relaxed text-lg text-center mb-8">
+            <p data-i18n="about_text" class="reveal reveal-delay-1 text-slate-400 leading-relaxed text-lg text-center mb-8">
                 A Comfort Transport's nasceu com o propósito de oferecer muito mais que uma viagem. Entregamos pontualidade absoluta, discrição, segurança e um conforto inigualável.
             </p>
 
-            <div class="relative rounded-2xl overflow-hidden shadow-2xl silver-glow group border border-slate-600/50 mb-8">
+            <div class="reveal reveal-delay-2 relative rounded-2xl overflow-hidden shadow-2xl silver-glow group border border-slate-600/50 mb-8">
                 <img src="img/tt.webp" alt="Comfort Transport's no aeroporto" class="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-700">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-                <div class="flex items-start gap-3">
+                <div class="reveal reveal-delay-3 flex items-start gap-3">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-200 via-slate-400 to-slate-600 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
                         <i class="fa-solid fa-user-shield text-slate-900 text-sm"></i>
                     </div>
                     <span data-i18n="about_li1" class="text-slate-300 text-sm pt-2 leading-snug">Motoristas qualificados.</span>
                 </div>
-                <div class="flex items-start gap-3">
+                <div class="reveal reveal-delay-4 flex items-start gap-3">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-200 via-slate-400 to-slate-600 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
                         <i class="fa-solid fa-spray-can-sparkles text-slate-900 text-sm"></i>
                     </div>
                     <span data-i18n="about_li2" class="text-slate-300 text-sm pt-2 leading-snug">Veículos higienizados e revisados.</span>
                 </div>
-                <div class="flex items-start gap-3">
+                <div class="reveal reveal-delay-5 flex items-start gap-3">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-200 via-slate-400 to-slate-600 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
                         <i class="fa-solid fa-eye-slash text-slate-900 text-sm"></i>
                     </div>
                     <span data-i18n="about_li3" class="text-slate-300 text-sm pt-2 leading-snug">Carros com películas escuras.</span>
                 </div>
-                <div class="flex items-start gap-3">
+                <div class="reveal reveal-delay-6 flex items-start gap-3">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-200 via-slate-400 to-slate-600 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
                         <i class="fa-solid fa-headset text-slate-900 text-sm"></i>
                     </div>
@@ -666,7 +683,7 @@
         <!-- Fleet Section -->
         <section id="frota" class="bg-slate-900/50 py-20 lg:py-28 border-b border-slate-800">
             <div class="max-w-6xl mx-auto px-6">
-                <div class="text-center mb-16 space-y-4">
+                <div class="reveal text-center mb-16 space-y-4">
                     <div data-i18n="fleet_badge" class="inline-block px-3 py-1 rounded-full bg-amber-900/20 border border-amber-700/40 text-amber-400 text-xs font-bold uppercase tracking-wider">
                         Nossa Frota
                     </div>
@@ -677,7 +694,7 @@
                 <div class="relative">
                     <div id="frotaCarousel" class="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-6 px-6 sm:mx-0 sm:px-0 pb-2 sm:pb-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                         <!-- Jeep Compass -->
-                        <div class="frota-card snap-center shrink-0 w-[78%] sm:w-auto sm:shrink bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-colors group">
+                        <div class="reveal reveal-delay-1 frota-card snap-center shrink-0 w-[78%] sm:w-auto sm:shrink bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-colors group">
                             <div class="aspect-[3/4] overflow-hidden bg-black flex items-center justify-center">
                                 <img src="img/compass.webp" alt="Jeep Compass" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
@@ -693,7 +710,7 @@
                         </div>
 
                         <!-- Volkswagen Virtus -->
-                        <div class="frota-card snap-center shrink-0 w-[78%] sm:w-auto sm:shrink bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-colors group">
+                        <div class="reveal reveal-delay-2 frota-card snap-center shrink-0 w-[78%] sm:w-auto sm:shrink bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-colors group">
                             <div class="aspect-[3/4] overflow-hidden bg-black flex items-center justify-center">
                                 <img src="img/virtus.webp" alt="Volkswagen Virtus" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
@@ -709,7 +726,7 @@
                         </div>
 
                         <!-- Nissan Sentra -->
-                        <div class="frota-card snap-center shrink-0 w-[78%] sm:w-auto sm:shrink bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-colors group">
+                        <div class="reveal reveal-delay-3 frota-card snap-center shrink-0 w-[78%] sm:w-auto sm:shrink bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-colors group">
                             <div class="aspect-[3/4] overflow-hidden bg-black flex items-center justify-center">
                                 <img src="img/nissan.webp" alt="Nissan Sentra" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
@@ -725,7 +742,7 @@
                         </div>
 
                         <!-- Chevrolet Cruze -->
-                        <div class="frota-card snap-center shrink-0 w-[78%] sm:w-auto sm:shrink bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-colors group">
+                        <div class="reveal reveal-delay-4 frota-card snap-center shrink-0 w-[78%] sm:w-auto sm:shrink bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-colors group">
                             <div class="aspect-[3/4] overflow-hidden bg-black flex items-center justify-center">
                                 <img src="img/cruze.webp" alt="Chevrolet Cruze" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
@@ -760,7 +777,7 @@
         <!-- Services Details -->
         <section id="especialidades" class="bg-slate-900/50 py-20 lg:py-28">
             <div class="max-w-5xl mx-auto px-6">
-            <div class="mb-12">
+            <div class="reveal mb-12">
                 <div data-i18n="spec_badge" class="inline-block px-3 py-1 rounded-full bg-amber-900/20 border border-amber-700/40 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4">
                     Especialidades
                 </div>
@@ -769,7 +786,7 @@
 
             <div class="divide-y divide-slate-800 border-t border-b border-slate-800">
                 <!-- Service Item -->
-                <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8">
+                <div class="reveal reveal-delay-1 flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8">
                     <span class="text-4xl font-bold text-slate-800 md:w-16 shrink-0 leading-none">01</span>
                     <div class="flex items-center gap-3 md:w-64 shrink-0">
                         <i class="fa-solid fa-plane-arrival text-amber-400 text-lg shrink-0"></i>
@@ -778,7 +795,7 @@
                     <p data-i18n="spec1_desc" class="text-slate-400 text-sm leading-relaxed">Acompanhamos o voo pelo aplicativo e já estamos no saguão quando você desce do avião, com plaquinha e sem cobrar hora de espera se o voo atrasar.</p>
                 </div>
                 <!-- Service Item -->
-                <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8">
+                <div class="reveal reveal-delay-2 flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8">
                     <span class="text-4xl font-bold text-slate-800 md:w-16 shrink-0 leading-none">02</span>
                     <div class="flex items-center gap-3 md:w-64 shrink-0">
                         <i class="fa-solid fa-building-user text-amber-400 text-lg shrink-0"></i>
@@ -787,7 +804,7 @@
                     <p data-i18n="spec2_desc" class="text-slate-400 text-sm leading-relaxed">O carro e o motorista ficam parados esperando você em reunião, evento ou visita técnica pelo tempo que precisar, sem taxa por hora parada.</p>
                 </div>
                 <!-- Service Item -->
-                <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8">
+                <div class="reveal reveal-delay-3 flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8">
                     <span class="text-4xl font-bold text-slate-800 md:w-16 shrink-0 leading-none">03</span>
                     <div class="flex items-center gap-3 md:w-64 shrink-0">
                         <i class="fa-solid fa-champagne-glasses text-amber-400 text-lg shrink-0"></i>
@@ -796,7 +813,7 @@
                     <p data-i18n="spec3_desc" class="text-slate-400 text-sm leading-relaxed">Já rodamos noivas, padrinhos e convidados em casamentos e formaturas pela região dos Inconfidentes, sempre chegando no horário combinado com a cerimônia.</p>
                 </div>
                 <!-- Service Item -->
-                <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8">
+                <div class="reveal reveal-delay-4 flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8">
                     <span class="text-4xl font-bold text-slate-800 md:w-16 shrink-0 leading-none">04</span>
                     <div class="flex items-center gap-3 md:w-64 shrink-0">
                         <i class="fa-solid fa-route text-amber-400 text-lg shrink-0"></i>
@@ -817,7 +834,7 @@
             <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-slate-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="relative max-w-6xl mx-auto px-6">
-                <div class="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12">
+                <div class="reveal grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12">
                     <!-- Brand -->
                     <div>
                         <div class="flex items-center gap-3 mb-4">
@@ -1740,6 +1757,30 @@
             }
 
             requestAnimationFrame(tick);
+        })();
+
+        /**
+         * Scroll-triggered section reveal animations
+         */
+        (function initScrollReveal() {
+            const revealEls = document.querySelectorAll('.reveal');
+            if (!revealEls.length) return;
+
+            if (!('IntersectionObserver' in window)) {
+                revealEls.forEach(el => el.classList.add('is-visible'));
+                return;
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+            revealEls.forEach(el => observer.observe(el));
         })();
 
         /**
