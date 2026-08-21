@@ -155,6 +155,37 @@
             left: 150%;
         }
 
+        /* Taxi easter-egg: drives across the whole screen when the logo is clicked,
+           hopping over every button along the way like a speed bump. Position is
+           driven from JS (translate on a 0,0-anchored fixed element) since the
+           path depends on the real, measured position of each button. */
+        .taxi-flyby {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            pointer-events: none;
+            font-size: 3rem;
+            line-height: 1;
+            filter: drop-shadow(0 12px 16px rgba(0,0,0,0.55));
+            will-change: transform;
+        }
+        .taxi-flyby .taxi-caption {
+            position: absolute;
+            left: 50%;
+            top: -1.5rem;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fde68a 0%, #d4af37 45%, #b8860b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
         /* Soft shine sweep across button text (used on the secondary link-buttons).
            background-size is exactly 200%, so sweeping background-position from
            0% to 100% always keeps the box fully covered by the gradient — the
@@ -179,17 +210,17 @@
            shorthand `animation` property from .fade-in-up doesn't clobber it. */
         .primary-cta.fade-in-up {
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                       ctaPulse 2.6s ease-in-out 1s infinite;
+                       ctaPulse 1.8s ease-in-out 1s infinite;
         }
 
         @keyframes ctaPulse {
             0%, 100% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.45);
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.65);
             }
             50% {
-                transform: scale(1.015);
-                box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+                transform: scale(1.045);
+                box-shadow: 0 0 0 16px rgba(212, 175, 55, 0);
             }
         }
 
@@ -288,7 +319,7 @@
             <header class="w-full flex flex-col items-center mb-8 fade-in-up">
                 <!-- Profile Image / Logo -->
                 <div class="w-full flex justify-center mb-1 group">
-                    <img src="img/logo.webp" alt="Comfort Transport's" class="w-64 sm:w-72 h-auto object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-[0_0_35px_rgba(212,175,55,0.35)]">
+                    <img src="img/logo.webp" alt="Comfort Transport's" onclick="launchTaxi()" class="w-64 sm:w-72 h-auto object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-[0_0_35px_rgba(212,175,55,0.35)] cursor-pointer active:scale-95">
                 </div>
 
                 <!-- Brand Name -->
@@ -318,7 +349,7 @@
             <div class="w-full flex flex-col gap-3">
                 
                 <!-- 1. Principal CTA: Solicitar Corrida -->
-                <a href="javascript:void(0)" onclick="waSend('wa_ride')" class="link-btn primary-cta fade-in-up delay-1 w-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 text-black rounded-2xl p-4 flex items-center border border-amber-300/50">
+                <a href="javascript:void(0)" onclick="waSend('wa_ride')" class="taxi-target link-btn primary-cta fade-in-up delay-1 w-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 text-black rounded-2xl p-4 flex items-center border border-amber-300/50">
                     <div class="w-12 h-12 rounded-full bg-black/15 flex items-center justify-center mr-4 shrink-0 shadow-inner">
                         <i class="fa-solid fa-car text-xl"></i>
                     </div>
@@ -330,7 +361,7 @@
                 </a>
 
                 <!-- 2. Agendar transporte -->
-                <a href="javascript:void(0)" onclick="openModal('agendamentoModal')" class="glass-panel fade-in-up delay-2 w-full rounded-2xl p-4 flex items-center cursor-pointer">
+                <a href="javascript:void(0)" onclick="openModal('agendamentoModal')" class="taxi-target glass-panel fade-in-up delay-2 w-full rounded-2xl p-4 flex items-center cursor-pointer">
                     <div class="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center mr-4 shrink-0 text-slate-300">
                         <i class="fa-regular fa-calendar-check text-lg"></i>
                     </div>
@@ -341,7 +372,7 @@
                 </a>
 
                 <!-- 4. Transfer Aeroporto -->
-                <a href="javascript:void(0)" onclick="openModal('transferModal')" class="glass-panel fade-in-up delay-4 w-full rounded-2xl p-4 flex items-center cursor-pointer">
+                <a href="javascript:void(0)" onclick="openModal('transferModal')" class="taxi-target glass-panel fade-in-up delay-4 w-full rounded-2xl p-4 flex items-center cursor-pointer">
                     <div class="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center mr-4 shrink-0 text-amber-400">
                         <i class="fa-solid fa-plane-departure text-lg"></i>
                     </div>
@@ -352,7 +383,7 @@
                 </a>
 
                 <!-- 5. Transporte Corporativo -->
-                <a href="javascript:void(0)" onclick="openModal('corporativoModal')" class="glass-panel fade-in-up delay-5 w-full rounded-2xl p-4 flex items-center cursor-pointer">
+                <a href="javascript:void(0)" onclick="openModal('corporativoModal')" class="taxi-target glass-panel fade-in-up delay-5 w-full rounded-2xl p-4 flex items-center cursor-pointer">
                     <div class="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center mr-4 shrink-0 text-amber-400">
                         <i class="fa-solid fa-briefcase text-lg"></i>
                     </div>
@@ -363,7 +394,7 @@
                 </a>
 
                 <!-- 6. Localização / Atendimento -->
-                <a href="javascript:void(0)" onclick="openModal('localizacaoModal')" class="glass-panel fade-in-up delay-6 w-full rounded-2xl p-4 flex items-center cursor-pointer">
+                <a href="javascript:void(0)" onclick="openModal('localizacaoModal')" class="taxi-target glass-panel fade-in-up delay-6 w-full rounded-2xl p-4 flex items-center cursor-pointer">
                     <div class="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center mr-4 shrink-0 text-amber-400">
                         <i class="fa-solid fa-map-location-dot text-lg"></i>
                     </div>
@@ -374,7 +405,7 @@
                 </a>
 
                 <!-- 7. Avalie nosso serviço -->
-                <a href="https://share.google/GUVS1U0xXsD7DeJXM" target="_blank" rel="noopener noreferrer" class="glass-panel fade-in-up delay-7 w-full rounded-2xl p-4 flex items-center cursor-pointer">
+                <a href="https://share.google/GUVS1U0xXsD7DeJXM" target="_blank" rel="noopener noreferrer" class="taxi-target glass-panel fade-in-up delay-7 w-full rounded-2xl p-4 flex items-center cursor-pointer">
                     <div class="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center mr-4 shrink-0 text-amber-400">
                         <i class="fa-solid fa-star text-lg"></i>
                     </div>
@@ -385,7 +416,7 @@
                 </a>
 
                 <!-- 8. Instagram -->
-                <a href="https://www.instagram.com/comfort.transports?igsh=cjVsMGQ1aW5wdXVt" target="_blank" rel="noopener noreferrer" class="glass-panel fade-in-up delay-8 w-full rounded-2xl p-4 flex justify-center items-center cursor-pointer">
+                <a href="https://www.instagram.com/comfort.transports?igsh=cjVsMGQ1aW5wdXVt" target="_blank" rel="noopener noreferrer" class="taxi-target glass-panel fade-in-up delay-8 w-full rounded-2xl p-4 flex justify-center items-center cursor-pointer">
                     <i class="fa-brands fa-instagram text-2xl text-pink-500 mr-2"></i>
                     <span data-i18n="instagram_label" class="font-semibold text-shine text-sm">Instagram</span>
                 </a>
@@ -515,9 +546,12 @@
         <!-- About Us Section -->
         <section id="sobre" class="bg-slate-900/50 border-b border-slate-800">
         <div class="max-w-3xl mx-auto px-6 py-20 lg:py-28">
-            <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight text-center mb-8">
-                <span data-i18n="about_title_highlight" class="silver-text">Mobilidade Executiva</span>.
+            <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight text-center mb-4">
+                <span data-i18n="about_title_pre">Redefinindo o padrão de</span> <span data-i18n="about_title_highlight" class="silver-text">Mobilidade Executiva</span>.
             </h2>
+            <p data-i18n="about_text" class="text-slate-400 leading-relaxed text-lg text-center mb-8">
+                A Comfort Transport's nasceu com o propósito de oferecer muito mais que uma viagem. Entregamos pontualidade absoluta, discrição, segurança e um conforto inigualável.
+            </p>
 
             <div class="relative rounded-2xl overflow-hidden shadow-2xl silver-glow group border border-slate-600/50 mb-8">
                 <img src="img/tt.webp" alt="Comfort Transport's no aeroporto" class="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-700">
@@ -1047,7 +1081,9 @@
                 city2_desc: "Santuário do Bom Jesus",
                 city3_desc: "Os Doze Profetas",
                 city4_desc: "Paisagens Históricas",
+                about_title_pre: "Redefinindo o padrão de",
                 about_title_highlight: "Mobilidade Executiva",
+                about_text: "A Comfort Transport's nasceu com o propósito de oferecer muito mais que uma viagem. Entregamos pontualidade absoluta, discrição, segurança e um conforto inigualável.",
                 about_li1: "Motoristas qualificados.",
                 about_li2: "Veículos higienizados e revisados.",
                 about_li3: "Carros com películas escuras.",
@@ -1161,7 +1197,9 @@
                 city2_desc: "Bom Jesus Sanctuary",
                 city3_desc: "The Twelve Prophets",
                 city4_desc: "Historic Landscapes",
+                about_title_pre: "Redefining the standard of",
                 about_title_highlight: "Executive Mobility",
+                about_text: "Comfort Transport's was founded with the purpose of offering much more than a ride. We deliver absolute punctuality, discretion, safety, and unmatched comfort.",
                 about_li1: "Qualified drivers.",
                 about_li2: "Sanitized and inspected vehicles.",
                 about_li3: "Cars with tinted windows.",
@@ -1275,7 +1313,9 @@
                 city2_desc: "Santuario del Buen Jesús",
                 city3_desc: "Los Doce Profetas",
                 city4_desc: "Paisajes Históricos",
+                about_title_pre: "Redefiniendo el estándar de",
                 about_title_highlight: "Movilidad Ejecutiva",
+                about_text: "Comfort Transport's nació con el propósito de ofrecer mucho más que un viaje. Entregamos puntualidad absoluta, discreción, seguridad y una comodidad inigualable.",
                 about_li1: "Conductores calificados.",
                 about_li2: "Vehículos higienizados y revisados.",
                 about_li3: "Autos con vidrios polarizados.",
@@ -1403,6 +1443,93 @@
          */
         function waSend(key) {
             openWhatsApp(t(key));
+        }
+
+        /**
+         * Fun easter-egg: a taxi drives across the whole screen when the logo is
+         * clicked, hopping over every visible button like it's a speed bump.
+         * The path is built from the real, measured position of each button
+         * (.taxi-target), so it always lines up with whatever is on screen.
+         */
+        function launchTaxi() {
+            const existing = document.querySelector('.taxi-flyby');
+            if (existing) existing.remove();
+
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            const targets = Array.from(document.querySelectorAll('.taxi-target'))
+                .filter(el => {
+                    const r = el.getBoundingClientRect();
+                    return r.top < vh && r.bottom > 0; // only bump over what's actually visible
+                });
+
+            // Build waypoints: off-screen start at the bottom -> zig-zag UP through
+            // each button's center (last button first) -> off-screen end at the
+            // top. The buttons act as the "road", climbed bottom-to-top; every
+            // one it reaches is a speed bump.
+            const climbOrder = [...targets].reverse();
+            const waypoints = [];
+            const lastY = climbOrder.length ? climbOrder[0].getBoundingClientRect().bottom - 20 : vh * 0.8;
+            waypoints.push({ x: -60, y: Math.min(vh - 40, lastY + 80) });
+
+            climbOrder.forEach((el, i) => {
+                const r = el.getBoundingClientRect();
+                const x = i % 2 === 0 ? r.left + r.width * 0.28 : r.right - r.width * 0.28;
+                const y = r.top + r.height / 2;
+                waypoints.push({ x, y, bump: true });
+            });
+
+            const last = waypoints[waypoints.length - 1];
+            waypoints.push({ x: vw + 60, y: Math.max(30, last.y - 90) });
+
+            const taxi = document.createElement('div');
+            taxi.className = 'taxi-flyby';
+            taxi.innerHTML =
+                '<span class="taxi-caption" style="opacity:0">Comfort Transport\'s</span>' +
+                '<img class="taxi-emoji" src="img/praia-car-cutout.png" alt="" style="display:inline-block; height:2.8rem; width:auto;">';
+            document.body.appendChild(taxi);
+
+            const caption = taxi.querySelector('.taxi-caption');
+            const emoji = taxi.querySelector('.taxi-emoji');
+
+            const segmentMs = 620;
+            const bumpHeight = 26;
+            const totalMs = segmentMs * (waypoints.length - 1);
+            const startTime = performance.now();
+
+            function frame(now) {
+                const elapsed = now - startTime;
+                if (elapsed >= totalMs) {
+                    taxi.remove();
+                    return;
+                }
+
+                const segIndex = Math.min(Math.floor(elapsed / segmentMs), waypoints.length - 2);
+                const segT = (elapsed - segIndex * segmentMs) / segmentMs;
+                const eased = segT < 0.5 ? 2 * segT * segT : 1 - Math.pow(-2 * segT + 2, 2) / 2;
+
+                const a = waypoints[segIndex];
+                const b = waypoints[segIndex + 1];
+                const x = a.x + (b.x - a.x) * eased;
+                const baseY = a.y + (b.y - a.y) * eased;
+
+                // Speed-bump arc: rises and falls while crossing into a button,
+                // peaking mid-segment when the segment's destination is a button.
+                const bumpArc = b.bump ? Math.sin(Math.PI * segT) * bumpHeight : 0;
+                const y = baseY - bumpArc;
+                const tilt = b.bump ? Math.cos(Math.PI * segT) * -10 : 0;
+                const flip = (b.x - a.x) >= 0 ? 1 : -1;
+
+                taxi.style.transform = `translate(${x}px, ${y}px)`;
+                emoji.style.transform = `scaleX(${flip}) rotate(${tilt * flip}deg)`;
+
+                caption.style.opacity = (elapsed > 250 && elapsed < totalMs - 300) ? '1' : '0';
+                caption.style.transition = 'opacity 0.25s ease';
+
+                requestAnimationFrame(frame);
+            }
+
+            requestAnimationFrame(frame);
         }
 
         /**
