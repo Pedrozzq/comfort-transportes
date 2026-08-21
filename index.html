@@ -50,6 +50,19 @@
             color: transparent;
         }
 
+        /* Premium silver/platinum gradient text, used in the About Us section */
+        .silver-text {
+            background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 30%, #94a3b8 55%, #e2e8f0 75%, #64748b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Soft platinum glow used around the About Us image */
+        .silver-glow {
+            box-shadow: 0 0 0 1px rgba(203, 213, 225, 0.25), 0 0 45px rgba(203, 213, 225, 0.12);
+        }
+
         /* Same gold gradient, but slowly animated for the brand title */
         .gold-text-animated {
             background: linear-gradient(90deg, #fde68a 0%, #d4af37 25%, #b8860b 50%, #d4af37 75%, #fde68a 100%);
@@ -64,6 +77,14 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        /* Parallax gallery showcase */
+        #pgBanner, #pgMatrix, .pg-card {
+            backface-visibility: hidden;
+        }
+        #pgCaption {
+            transition: opacity 0.6s ease;
         }
 
         /* Language switcher buttons */
@@ -132,6 +153,44 @@
 
         .primary-cta:hover::after {
             left: 150%;
+        }
+
+        /* Soft shine sweep across button text (used on the secondary link-buttons).
+           background-size is exactly 200%, so sweeping background-position from
+           0% to 100% always keeps the box fully covered by the gradient — the
+           text never goes blank, only the bright band moves across it. */
+        .text-shine {
+            background-image: linear-gradient(90deg, #e2e8f0 0%, #e2e8f0 40%, #ffffff 50%, #e2e8f0 60%, #e2e8f0 100%);
+            background-size: 200% 100%;
+            background-repeat: no-repeat;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textShine 3.5s linear infinite;
+        }
+
+        @keyframes textShine {
+            0% { background-position: 0% 0; }
+            100% { background-position: 100% 0; }
+        }
+
+        /* Gentle attention pulse for the primary CTA button.
+           Combined with its entry animation here (compound selector) so the
+           shorthand `animation` property from .fade-in-up doesn't clobber it. */
+        .primary-cta.fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                       ctaPulse 2.6s ease-in-out 1s infinite;
+        }
+
+        @keyframes ctaPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.45);
+            }
+            50% {
+                transform: scale(1.015);
+                box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+            }
         }
 
         /* Entry animation for elements */
@@ -276,7 +335,7 @@
                         <i class="fa-regular fa-calendar-check text-lg"></i>
                     </div>
                     <div class="flex flex-col">
-                        <span data-i18n="schedule_title" class="font-semibold text-gray-100">Agendar Transporte</span>
+                        <span data-i18n="schedule_title" class="font-semibold text-shine">Agendar Transporte</span>
                         <span data-i18n="schedule_subtitle" class="text-slate-400 text-xs">Viagens programadas e eventos</span>
                     </div>
                 </a>
@@ -287,7 +346,7 @@
                         <i class="fa-solid fa-plane-departure text-lg"></i>
                     </div>
                     <div class="flex flex-col">
-                        <span data-i18n="transferLink_title" class="font-semibold text-gray-100">Transfer Aeroporto</span>
+                        <span data-i18n="transferLink_title" class="font-semibold text-shine">Transfer Aeroporto</span>
                         <span data-i18n="transferLink_subtitle" class="text-slate-400 text-xs">Recepção e pontualidade</span>
                     </div>
                 </a>
@@ -298,7 +357,7 @@
                         <i class="fa-solid fa-briefcase text-lg"></i>
                     </div>
                     <div class="flex flex-col">
-                        <span data-i18n="corporate_title" class="font-semibold text-gray-100">Transporte Corporativo</span>
+                        <span data-i18n="corporate_title" class="font-semibold text-shine">Transporte Corporativo</span>
                         <span data-i18n="corporate_subtitle" class="text-slate-400 text-xs">Soluções para sua empresa</span>
                     </div>
                 </a>
@@ -309,7 +368,7 @@
                         <i class="fa-solid fa-map-location-dot text-lg"></i>
                     </div>
                     <div class="flex flex-col">
-                        <span data-i18n="area_title" class="font-semibold text-gray-100">Área de Atendimento</span>
+                        <span data-i18n="area_title" class="font-semibold text-shine">Área de Atendimento</span>
                         <span data-i18n="area_subtitle" class="text-slate-400 text-xs">Consulte as regiões</span>
                     </div>
                 </a>
@@ -320,7 +379,7 @@
                         <i class="fa-solid fa-star text-lg"></i>
                     </div>
                     <div class="flex flex-col">
-                        <span data-i18n="review_title" class="font-semibold text-gray-100">Avalie no Google</span>
+                        <span data-i18n="review_title" class="font-semibold text-shine">Avalie no Google</span>
                         <span data-i18n="review_subtitle" class="text-slate-400 text-xs">Sua opinião é importante</span>
                     </div>
                 </a>
@@ -328,7 +387,7 @@
                 <!-- 8. Instagram -->
                 <a href="https://www.instagram.com/comfort.transports?igsh=cjVsMGQ1aW5wdXVt" target="_blank" rel="noopener noreferrer" class="glass-panel fade-in-up delay-8 w-full rounded-2xl p-4 flex justify-center items-center cursor-pointer">
                     <i class="fa-brands fa-instagram text-2xl text-pink-500 mr-2"></i>
-                    <span data-i18n="instagram_label" class="font-semibold text-gray-100 text-sm">Instagram</span>
+                    <span data-i18n="instagram_label" class="font-semibold text-shine text-sm">Instagram</span>
                 </a>
             </div>
 
@@ -343,6 +402,61 @@
     <!-- INSTITUTIONAL WEBSITE CONTENT -->
     <main id="site-content" class="w-full relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         
+        <!-- Parallax Gallery Showcase -->
+        <section id="parallaxGallerySection" class="relative w-full h-[400vh] bg-[#050505]">
+            <div class="sticky top-0 h-screen w-full flex justify-center items-center overflow-hidden">
+                <div id="pgBanner" class="relative bg-black overflow-hidden flex items-center justify-center max-w-[1920px] mx-auto will-change-transform">
+                    <div class="absolute inset-0 flex justify-center items-center pointer-events-none" style="perspective: 1000px;">
+                        <!-- Ambient shadow masking -->
+                        <div class="absolute inset-0 z-20 shadow-[inset_0_100px_150px_-50px_rgba(0,0,0,1),inset_0_-100px_150px_-50px_rgba(0,0,0,1)]"></div>
+                        <div class="absolute inset-0 z-20 shadow-[inset_150px_0_150px_-50px_rgba(0,0,0,1),inset_-150px_0_150px_-50px_rgba(0,0,0,1)]"></div>
+
+                        <!-- 3D parallax image matrix -->
+                        <div id="pgMatrix" class="flex gap-4 md:gap-6 justify-center items-center w-[120vw] h-[150vh] origin-center will-change-transform" style="transform-style: preserve-3d;">
+                            <div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="1">
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/compass.webp" alt="Jeep Compass" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/tt.webp" alt="Comfort Transport's" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/virtus.webp" alt="Volkswagen Virtus" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/compass.webp" alt="Jeep Compass" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/tt.webp" alt="Comfort Transport's" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/virtus.webp" alt="Volkswagen Virtus" class="w-full h-full object-cover opacity-90"></div>
+                            </div>
+                            <div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="2">
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/nissan.webp" alt="Nissan Sentra" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/cruze.webp" alt="Chevrolet Cruze" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/tt.webp" alt="Comfort Transport's" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/nissan.webp" alt="Nissan Sentra" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/cruze.webp" alt="Chevrolet Cruze" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/tt.webp" alt="Comfort Transport's" class="w-full h-full object-cover opacity-90"></div>
+                            </div>
+                            <div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="3">
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/virtus.webp" alt="Volkswagen Virtus" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/compass.webp" alt="Jeep Compass" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/cruze.webp" alt="Chevrolet Cruze" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/virtus.webp" alt="Volkswagen Virtus" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/compass.webp" alt="Jeep Compass" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/cruze.webp" alt="Chevrolet Cruze" class="w-full h-full object-cover opacity-90"></div>
+                            </div>
+                            <div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="4">
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/cruze.webp" alt="Chevrolet Cruze" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/nissan.webp" alt="Nissan Sentra" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/compass.webp" alt="Jeep Compass" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/cruze.webp" alt="Chevrolet Cruze" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/nissan.webp" alt="Nissan Sentra" class="w-full h-full object-cover opacity-90"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#111] overflow-hidden"><img src="img/compass.webp" alt="Jeep Compass" class="w-full h-full object-cover opacity-90"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Caption overlayed once the banner has unfurled -->
+                    <div id="pgCaption" class="absolute inset-x-0 bottom-10 z-30 text-center px-6 opacity-0 pointer-events-none">
+                        <span class="text-amber-400 font-bold uppercase tracking-[0.3em] text-xs">Comfort Transport's</span>
+                        <h2 class="text-2xl md:text-4xl font-bold text-white mt-2 gold-text-animated inline-block">Uma frota que impressiona</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Cities Served Section -->
         <section class="bg-slate-900/50 py-20 lg:py-28 border-b border-slate-800">
             <div class="max-w-5xl mx-auto px-6">
@@ -399,51 +513,55 @@
         </section>
 
         <!-- About Us Section -->
-        <section class="bg-slate-900/50 border-b border-slate-800">
-        <div class="max-w-5xl mx-auto px-6 py-20 lg:py-28">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <div data-i18n="about_badge" class="inline-block px-3 py-1 rounded-full bg-amber-900/20 border border-amber-700/40 text-amber-400 text-xs font-bold uppercase tracking-wider">
-                        Sobre Nós
+        <section id="sobre" class="bg-slate-900/50 border-b border-slate-800">
+        <div class="max-w-3xl mx-auto px-6 py-20 lg:py-28">
+            <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight text-center mb-8">
+                <span data-i18n="about_title_highlight" class="silver-text">Mobilidade Executiva</span>.
+            </h2>
+
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl silver-glow group border border-slate-600/50 mb-8">
+                <img src="img/tt.webp" alt="Comfort Transport's no aeroporto" class="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-200 via-slate-400 to-slate-600 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
+                        <i class="fa-solid fa-user-shield text-slate-900 text-sm"></i>
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight">
-                        <span data-i18n="about_title_pre">Redefinindo o padrão de</span> <span data-i18n="about_title_highlight" class="gold-text">Mobilidade Executiva</span>.
-                    </h2>
-                    <p data-i18n="about_text" class="text-slate-400 leading-relaxed text-lg">
-                        A Comfort Transport's nasceu com o propósito de oferecer muito mais que uma viagem. Entregamos pontualidade absoluta, discrição, segurança e um conforto inigualável para executivos, autoridades e clientes exigentes.
-                    </p>
-                    <ul class="space-y-3 pt-4">
-                        <li class="flex items-center text-slate-300">
-                            <i class="fa-solid fa-check-circle text-amber-500 mr-3"></i> <span data-i18n="about_li1">Motoristas qualificados.</span>
-                        </li>
-                        <li class="flex items-center text-slate-300">
-                            <i class="fa-solid fa-check-circle text-amber-500 mr-3"></i> <span data-i18n="about_li2">Veículos higienizados e revisados.</span>
-                        </li>
-                        <li class="flex items-center text-slate-300">
-                            <i class="fa-solid fa-check-circle text-amber-500 mr-3"></i> <span data-i18n="about_li3">Carros com películas escuras.</span>
-                        </li>
-                        <li class="flex items-center text-slate-300">
-                            <i class="fa-solid fa-check-circle text-amber-500 mr-3"></i> <span data-i18n="about_li4">Atendimento personalizado 24 horas.</span>
-                        </li>
-                    </ul>
+                    <span data-i18n="about_li1" class="text-slate-300 text-sm pt-2 leading-snug">Motoristas qualificados.</span>
                 </div>
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl group border border-slate-800">
-                    <img src="img/tt.webp" alt="Comfort Transport's no aeroporto" class="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-200 via-slate-400 to-slate-600 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
+                        <i class="fa-solid fa-spray-can-sparkles text-slate-900 text-sm"></i>
+                    </div>
+                    <span data-i18n="about_li2" class="text-slate-300 text-sm pt-2 leading-snug">Veículos higienizados e revisados.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-200 via-slate-400 to-slate-600 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
+                        <i class="fa-solid fa-eye-slash text-slate-900 text-sm"></i>
+                    </div>
+                    <span data-i18n="about_li3" class="text-slate-300 text-sm pt-2 leading-snug">Carros com películas escuras.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-200 via-slate-400 to-slate-600 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
+                        <i class="fa-solid fa-headset text-slate-900 text-sm"></i>
+                    </div>
+                    <span data-i18n="about_li4" class="text-slate-300 text-sm pt-2 leading-snug">Atendimento personalizado 24 horas.</span>
                 </div>
             </div>
             </div>
         </section>
 
         <!-- Fleet Section -->
-        <section class="bg-slate-900/50 py-20 lg:py-28 border-b border-slate-800">
+        <section id="frota" class="bg-slate-900/50 py-20 lg:py-28 border-b border-slate-800">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="text-center mb-16 space-y-4">
                     <div data-i18n="fleet_badge" class="inline-block px-3 py-1 rounded-full bg-amber-900/20 border border-amber-700/40 text-amber-400 text-xs font-bold uppercase tracking-wider">
                         Nossa Frota
                     </div>
                     <h2 data-i18n="fleet_title" class="text-3xl md:text-4xl font-bold text-white">Conheça os Veículos</h2>
-                    <p data-i18n="fleet_subtitle" class="text-slate-400 max-w-2xl mx-auto">Cada veículo é vistoriado, higienizado e conduzido por motoristas qualificados para garantir sua segurança e conforto.</p>
+                    <p data-i18n="fleet_subtitle" class="text-slate-400 max-w-2xl mx-auto">Cada veículo é vistoriado e higienizado para garantir sua segurança e conforto.</p>
                 </div>
 
                 <div class="relative">
@@ -530,7 +648,7 @@
         </section>
 
         <!-- Services Details -->
-        <section class="bg-slate-900/50 py-20 lg:py-28">
+        <section id="especialidades" class="bg-slate-900/50 py-20 lg:py-28">
             <div class="max-w-5xl mx-auto px-6">
             <div class="mb-12">
                 <div data-i18n="spec_badge" class="inline-block px-3 py-1 rounded-full bg-amber-900/20 border border-amber-700/40 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4">
@@ -574,45 +692,78 @@
                         <i class="fa-solid fa-route text-amber-400 text-lg shrink-0"></i>
                         <h3 data-i18n="spec4_title" class="text-lg font-bold text-white">Viagens Intermunicipais</h3>
                     </div>
-                    <p data-i18n="spec4_desc" class="text-slate-400 text-sm leading-relaxed">De Ouro Preto a Belo Horizonte, Congonhas, Mariana ou capitais vizinhas, sem parar em rodoviária nem dividir o carro com desconhecido.</p>
+                    <p data-i18n="spec4_desc" class="text-slate-400 text-sm leading-relaxed">De Ouro Preto a Belo Horizonte, Congonhas, Mariana, sem parar em rodoviária nem dividir o carro com desconhecido.</p>
                 </div>
             </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="bg-slate-950/70 py-12 border-t border-slate-800">
-            <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
-                <div>
-                    <div class="flex items-center gap-3 mb-4">
-                        <img src="img/logo.webp" alt="Comfort Transport's" class="w-10 h-10 rounded-full object-cover border border-amber-500/40">
-                        <span class="text-xl font-bold gold-text-animated tracking-tight">Comfort Transport's</span>
+        <footer class="relative overflow-hidden bg-transparent pt-16 pb-8">
+            <!-- Top hairline -->
+            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent"></div>
+            <!-- Ambient glow blobs -->
+            <div class="absolute -top-24 -left-24 w-72 h-72 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-slate-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative max-w-6xl mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12">
+                    <!-- Brand -->
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <img src="img/logo.webp" alt="Comfort Transport's" class="w-10 h-10 rounded-full object-cover border border-amber-500/40">
+                            <span class="text-xl font-bold gold-text-animated tracking-tight">Comfort Transport's</span>
+                        </div>
+                        <p class="text-slate-500 text-sm leading-relaxed max-w-xs" data-i18n="hero_subtitle">Transporte Executivo de Excelência</p>
                     </div>
 
-                    <div class="space-y-2.5 text-sm text-slate-400">
-                        <a href="javascript:void(0)" onclick="waSend('wa_help')" class="flex items-center gap-2.5 hover:text-white transition-colors">
-                            <i class="fa-brands fa-whatsapp text-emerald-400 w-4"></i> (31) 99668-9735
-                        </a>
-                        <div class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-map-location-dot text-amber-400 w-4"></i> Ouro Preto - MG
-                        </div>
-                        <div class="flex items-center gap-2.5">
-                            <i class="fa-regular fa-clock text-amber-400 w-4"></i> <span data-i18n="hero_available">Disponível 24/7</span>
+                    <!-- Navegue -->
+                    <div>
+                        <h4 data-i18n="footer_nav_title" class="text-slate-200 text-xs font-bold uppercase tracking-[0.2em] mb-4">Navegue</h4>
+                        <ul class="space-y-3 text-sm text-slate-500">
+                            <li><a href="#sobre" class="hover:text-amber-400 transition-colors" data-i18n="footer_nav_about">Sobre Nós</a></li>
+                            <li><a href="#frota" class="hover:text-amber-400 transition-colors" data-i18n="fleet_badge">Nossa Frota</a></li>
+                            <li><a href="#especialidades" class="hover:text-amber-400 transition-colors" data-i18n="spec_badge">Especialidades</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contato -->
+                    <div>
+                        <h4 data-i18n="footer_contact_title" class="text-slate-200 text-xs font-bold uppercase tracking-[0.2em] mb-4">Contato</h4>
+                        <ul class="space-y-3 text-sm text-slate-500">
+                            <li>
+                                <a href="javascript:void(0)" onclick="waSend('wa_help')" class="flex items-center gap-2.5 hover:text-amber-400 transition-colors">
+                                    <i class="fa-brands fa-whatsapp text-emerald-400 w-4"></i> (31) 99668-9735
+                                </a>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-map-location-dot text-amber-400 w-4"></i> Ouro Preto - MG
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Redes -->
+                    <div>
+                        <h4 data-i18n="footer_social_title" class="text-slate-200 text-xs font-bold uppercase tracking-[0.2em] mb-4">Redes</h4>
+                        <div class="flex gap-3">
+                            <a href="https://www.instagram.com/comfort.transports?igsh=cjVsMGQ1aW5wdXVt" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-transparent border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-amber-500/40 transition-colors">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="javascript:void(0)" onclick="waSend('wa_help')" class="w-10 h-10 rounded-xl bg-transparent border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-amber-500/40 transition-colors">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex gap-4">
-                    <a href="https://www.instagram.com/comfort.transports?igsh=cjVsMGQ1aW5wdXVt" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="javascript:void(0)" onclick="waSend('wa_help')" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </a>
+                <!-- Bottom bar -->
+                <div class="mt-14 pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+                    <p class="text-slate-600 text-xs">&copy; <span id="currentYear"></span> Comfort Transport's. <span data-i18n="footer_rights">Todos os direitos reservados.</span></p>
+                    <p class="text-slate-600 text-xs">
+                        <span data-i18n="footer_madeBy">Desenvolvido por:</span>
+                        <a href="https://www.saturnonfc.com.br" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:text-amber-300 transition-colors font-medium">Saturno NFC</a>
+                    </p>
                 </div>
-            </div>
-            <div class="max-w-5xl mx-auto px-6 mt-8 pt-8 border-t border-slate-900 text-center text-slate-500 text-sm">
-                <p>&copy; <span id="currentYear"></span> Comfort Transport's. <span data-i18n="footer_rights">Todos os direitos reservados.</span></p>
             </div>
         </footer>
     </main>
@@ -896,17 +1047,14 @@
                 city2_desc: "Santuário do Bom Jesus",
                 city3_desc: "Os Doze Profetas",
                 city4_desc: "Paisagens Históricas",
-                about_badge: "Sobre Nós",
-                about_title_pre: "Redefinindo o padrão de",
                 about_title_highlight: "Mobilidade Executiva",
-                about_text: "A Comfort Transport's nasceu com o propósito de oferecer muito mais que uma viagem. Entregamos pontualidade absoluta, discrição, segurança e um conforto inigualável para executivos, autoridades e clientes exigentes.",
                 about_li1: "Motoristas qualificados.",
                 about_li2: "Veículos higienizados e revisados.",
                 about_li3: "Carros com películas escuras.",
                 about_li4: "Atendimento personalizado 24 horas.",
                 fleet_badge: "Nossa Frota",
                 fleet_title: "Conheça os Veículos",
-                fleet_subtitle: "Cada veículo é vistoriado, higienizado e conduzido por motoristas qualificados para garantir sua segurança e conforto.",
+                fleet_subtitle: "Cada veículo é vistoriado e higienizado para garantir sua segurança e conforto.",
                 veh1_desc: "SUV robusto e sofisticado, com presença imponente para viagens executivas e trajetos pelas cidades históricas.",
                 veh2_desc: "Design moderno e rodagem refinada, ideal para transfers e viagens intermunicipais com conforto.",
                 veh3_desc: "Sedan de alto padrão, com acabamento premium e rodagem silenciosa para reuniões e compromissos de negócios.",
@@ -921,8 +1069,13 @@
                 spec3_title: "Eventos e Casamentos",
                 spec3_desc: "Já rodamos noivas, padrinhos e convidados em casamentos e formaturas pela região dos Inconfidentes, sempre chegando no horário combinado com a cerimônia.",
                 spec4_title: "Viagens Intermunicipais",
-                spec4_desc: "De Ouro Preto a Belo Horizonte, Congonhas, Mariana ou capitais vizinhas, sem parar em rodoviária nem dividir o carro com desconhecido.",
+                spec4_desc: "De Ouro Preto a Belo Horizonte, Congonhas, Mariana, sem parar em rodoviária nem dividir o carro com desconhecido.",
                 footer_rights: "Todos os direitos reservados.",
+                footer_madeBy: "Desenvolvido por:",
+                footer_nav_title: "Navegue",
+                footer_nav_about: "Sobre Nós",
+                footer_contact_title: "Contato",
+                footer_social_title: "Redes",
                 wa_aria: "Falar no WhatsApp",
                 modal_schedule_title: "Agendar Viagem",
                 modal_schedule_subtitle: "Preencha os dados abaixo para verificar disponibilidade.",
@@ -1008,17 +1161,14 @@
                 city2_desc: "Bom Jesus Sanctuary",
                 city3_desc: "The Twelve Prophets",
                 city4_desc: "Historic Landscapes",
-                about_badge: "About Us",
-                about_title_pre: "Redefining the standard of",
                 about_title_highlight: "Executive Mobility",
-                about_text: "Comfort Transport's was founded with the purpose of offering much more than a ride. We deliver absolute punctuality, discretion, safety, and unmatched comfort for executives, authorities, and demanding clients.",
                 about_li1: "Qualified drivers.",
                 about_li2: "Sanitized and inspected vehicles.",
                 about_li3: "Cars with tinted windows.",
                 about_li4: "Personalized 24-hour service.",
                 fleet_badge: "Our Fleet",
                 fleet_title: "Meet the Vehicles",
-                fleet_subtitle: "Every vehicle is inspected, sanitized, and driven by qualified drivers to ensure your safety and comfort.",
+                fleet_subtitle: "Every vehicle is inspected and sanitized to ensure your safety and comfort.",
                 veh1_desc: "A robust, sophisticated SUV with an imposing presence for executive trips and routes through the historic cities.",
                 veh2_desc: "Modern design and refined ride quality, ideal for transfers and intercity trips in comfort.",
                 veh3_desc: "A high-standard sedan with premium finishing and a quiet ride for meetings and business appointments.",
@@ -1033,8 +1183,13 @@
                 spec3_title: "Events and Weddings",
                 spec3_desc: "We've driven brides, best men, and guests to weddings and graduations throughout the Inconfidentes region, always arriving on the time agreed with the ceremony.",
                 spec4_title: "Intercity Trips",
-                spec4_desc: "From Ouro Preto to Belo Horizonte, Congonhas, Mariana, or nearby state capitals, with no bus station stops or sharing the car with strangers.",
+                spec4_desc: "From Ouro Preto to Belo Horizonte, Congonhas, Mariana, with no bus station stops or sharing the car with strangers.",
                 footer_rights: "All rights reserved.",
+                footer_madeBy: "Developed by:",
+                footer_nav_title: "Navigate",
+                footer_nav_about: "About Us",
+                footer_contact_title: "Contact",
+                footer_social_title: "Social",
                 wa_aria: "Chat on WhatsApp",
                 modal_schedule_title: "Schedule a Trip",
                 modal_schedule_subtitle: "Fill in the details below to check availability.",
@@ -1120,17 +1275,14 @@
                 city2_desc: "Santuario del Buen Jesús",
                 city3_desc: "Los Doce Profetas",
                 city4_desc: "Paisajes Históricos",
-                about_badge: "Sobre Nosotros",
-                about_title_pre: "Redefiniendo el estándar de",
                 about_title_highlight: "Movilidad Ejecutiva",
-                about_text: "Comfort Transport's nació con el propósito de ofrecer mucho más que un viaje. Entregamos puntualidad absoluta, discreción, seguridad y una comodidad inigualable para ejecutivos, autoridades y clientes exigentes.",
                 about_li1: "Conductores calificados.",
                 about_li2: "Vehículos higienizados y revisados.",
                 about_li3: "Autos con vidrios polarizados.",
                 about_li4: "Atención personalizada las 24 horas.",
                 fleet_badge: "Nuestra Flota",
                 fleet_title: "Conozca los Vehículos",
-                fleet_subtitle: "Cada vehículo es inspeccionado, higienizado y conducido por choferes calificados para garantizar su seguridad y comodidad.",
+                fleet_subtitle: "Cada vehículo es inspeccionado e higienizado para garantizar su seguridad y comodidad.",
                 veh1_desc: "SUV robusto y sofisticado, con presencia imponente para viajes ejecutivos y trayectos por las ciudades históricas.",
                 veh2_desc: "Diseño moderno y rodaje refinado, ideal para traslados y viajes intermunicipales con comodidad.",
                 veh3_desc: "Sedán de alto nivel, con acabado premium y rodaje silencioso para reuniones y compromisos de negocios.",
@@ -1145,8 +1297,13 @@
                 spec3_title: "Eventos y Bodas",
                 spec3_desc: "Ya hemos llevado novias, padrinos e invitados en bodas y graduaciones por la región de los Inconfidentes, llegando siempre en el horario acordado con la ceremonia.",
                 spec4_title: "Viajes Intermunicipales",
-                spec4_desc: "De Ouro Preto a Belo Horizonte, Congonhas, Mariana o capitales vecinas, sin parar en terminal de autobuses ni compartir el auto con desconocidos.",
+                spec4_desc: "De Ouro Preto a Belo Horizonte, Congonhas, Mariana, sin parar en terminal de autobuses ni compartir el auto con desconocidos.",
                 footer_rights: "Todos los derechos reservados.",
+                footer_madeBy: "Desarrollado por:",
+                footer_nav_title: "Navegar",
+                footer_nav_about: "Sobre Nosotros",
+                footer_contact_title: "Contacto",
+                footer_social_title: "Redes",
                 wa_aria: "Hablar por WhatsApp",
                 modal_schedule_title: "Agendar Viaje",
                 modal_schedule_subtitle: "Complete los datos a continuación para verificar disponibilidad.",
@@ -1295,6 +1452,92 @@
             }
             frotaAutoplayTimer = setInterval(frotaAutoplayTick, 2000);
         });
+
+        /**
+         * Parallax Gallery Showcase — scroll-linked 3D unfurl effect
+         * (vanilla JS/CSS port; no React/framer-motion available in this static site)
+         */
+        (function initParallaxGallery() {
+            const section = document.getElementById('parallaxGallerySection');
+            const banner = document.getElementById('pgBanner');
+            const matrix = document.getElementById('pgMatrix');
+            const caption = document.getElementById('pgCaption');
+            if (!section || !banner || !matrix) return;
+
+            const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+            const mapRange = (p, inMin, inMax, outMin, outMax) => {
+                const t = clamp((p - inMin) / (inMax - inMin), 0, 1);
+                return outMin + (outMax - outMin) * t;
+            };
+
+            const cols = matrix.querySelectorAll('.pg-col');
+
+            const target = {};
+            const current = {};
+
+            function computeTargets(p) {
+                target.bw = mapRange(p, 0, 0.15, 90, 100);      // vw
+                target.bh = mapRange(p, 0, 0.15, 80, 100);      // vh
+                target.br = mapRange(p, 0, 0.15, 48, 0);        // px
+                target.bbw = mapRange(p, 0, 0.15, 4, 0);        // px
+                target.rotY = mapRange(p, 0.15, 1, -45, -8);
+                target.rotX = mapRange(p, 0.15, 1, 25, 4);
+                target.rotZ = mapRange(p, 0.15, 1, 15, 2);
+                target.tz = mapRange(p, 0.15, 1, -800, 0);
+                target.y1 = mapRange(p, 0.15, 1, 0, -40);
+                target.y2 = mapRange(p, 0.15, 1, -40, 10);
+                target.y3 = mapRange(p, 0.15, 1, 0, -40);
+                target.y4 = mapRange(p, 0.15, 1, -30, 20);
+                target.caption = mapRange(p, 0.85, 1, 0, 1);
+            }
+
+            let initialized = false;
+            function seedCurrent() {
+                Object.keys(target).forEach(k => { current[k] = target[k]; });
+                initialized = true;
+            }
+
+            function getProgress() {
+                const rect = section.getBoundingClientRect();
+                const scrollable = rect.height - window.innerHeight;
+                if (scrollable <= 0) return rect.top <= 0 ? 1 : 0;
+                return clamp(-rect.top / scrollable, 0, 1);
+            }
+
+            function applyStyles() {
+                banner.style.width = current.bw + 'vw';
+                banner.style.height = current.bh + 'vh';
+                banner.style.borderRadius = current.br + 'px';
+                banner.style.borderStyle = 'solid';
+                banner.style.borderWidth = current.bbw + 'px';
+                banner.style.borderColor = '#2c2738';
+
+                matrix.style.transform =
+                    `rotateY(${current.rotY}deg) rotateX(${current.rotX}deg) rotateZ(${current.rotZ}deg) translateZ(${current.tz}px)`;
+
+                if (cols[0]) cols[0].style.transform = `translateY(${current.y1}%)`;
+                if (cols[1]) cols[1].style.transform = `translateY(${current.y2}%)`;
+                if (cols[2]) cols[2].style.transform = `translateY(${current.y3}%)`;
+                if (cols[3]) cols[3].style.transform = `translateY(${current.y4}%)`;
+
+                if (caption) caption.style.opacity = current.caption;
+            }
+
+            function tick() {
+                const p = getProgress();
+                computeTargets(p);
+                if (!initialized) seedCurrent();
+
+                Object.keys(target).forEach(k => {
+                    current[k] += (target[k] - current[k]) * 0.12;
+                });
+
+                applyStyles();
+                requestAnimationFrame(tick);
+            }
+
+            requestAnimationFrame(tick);
+        })();
 
         /**
          * Modal Logic
